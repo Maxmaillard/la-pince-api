@@ -21,8 +21,18 @@ LaPince est une Web-application de gestion de finances personnelles. ( comme Rev
 
 ### L'arborescence de l'application
 
-- Page d’accueil (presentation de l’app, possibilité de s’inscrire ou de se connecter, mise en avant de l’app) connexion/inscription.
-- Page principale.
+```
+📱 Application
+│
+├── 🏠 Page d'accueil
+│   └── App principale
+│       └── 👤 Profil
+│           ├── ℹ️ Mes infos
+│           ├── 🏦 Mes banques
+│           └── ⚙️ Mes paramètres
+│
+└── 🚨 Signalement
+```
 
 ## 🛠️ Technologies utilisées
 
