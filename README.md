@@ -98,3 +98,81 @@ ___
 |Utilisateur|signaler un dysfonctionnement| transmettre un bug aux administrateurs pour améliorer la stabilité de l'app| V2
 |Administrateur|supprimer un compte utilisateur| modérer la plateforme et supprimer les profils inactifs ou frauduleux | MVP
 |Administrateur|consulter les signalements| centraliser les retours techniques pour faciliter la maintenance corrective | V2
+
+
+
+# API ENDPOINT
+
+## 🏠 Page d'accueil :
+
+**POST** /api/auth/login : - Connexion utilisateur  
+                      - Body Email/mdp  
+                      - Réponse : token d'authentification  
+
+**POST** /api/auth/register : - Inscription nouvel utilisateur  
+                          - Body : nom, prenom, email, mot de passe  
+                          - Réponse : Compte créé + token d'authentification  
+
+**POST** /api/auth/forgot-password : - Reinisialiser le mdp  
+                                 - Body : email  
+
+
+## 📱 Page principale : 
+
+**GET** /api/dashboard : - Recupere le tableau de bord  
+                     - Reponse : solde total, historique de depenses  
+
+**POST** /api/new-transaction : - Crée une nouvelle transaction  
+                            - Body : montant, categorie, description, date  
+
+**GET** /api/transaction/:id : - Recupere les details d'une transation spécifique  
+                           - params : id de la transaction  
+
+**PUT** /api/transaction/:id : - mettre a jour une transaction existante  
+                           - param : id de la transaction  
+                           - body : Données a modifier (date, montant, description, categorie)  
+
+**DELETE** /api/transaction/:id : - Supprime une transaction  
+                              - param : l'id de la transaction  
+
+## 👤 Profil :
+
+### ℹ️ Mes infos :
+
+**GET** /api/profile/infos : - Recupere les données utilisateur  
+                         - Réponse : Données completes du profil  
+
+**PUT** /api/profile/infos  : - Met a jour le profil utilisateur  
+                          - Body : Données du profil a modifier  
+
+### 🏦 Mes banques :
+
+**GET** /api/profile/banks : - Recupere la liste des banques connectées  
+                         - Reponse : Liste des comptes bancaires  
+
+**POST** /api/profile/banks : - Ajouter une nouvelle banque  
+                          - Body : information de la banque  
+
+**GET** /api/profile/banks/:id : - Recupere les info d'une banque spécifique  
+                             - params : id de la banque  
+
+**DELETE** /api/profile/banks/:id : - supprime une connecion bancaire  
+                                - params : id de la banque  
+
+### ⚙️ Mes parametres
+
+**GET** /api/profile/settings : - Recupere les parametres de l'utilisateur  
+                            - Réponse : Configuration et preferences  
+
+**PUT** /api/profile/settings : - met a jour les parametres  
+                            - Body : parametres changé  
+
+## 🚨 Signalement :
+
+**POST** /api/reports : - Crée un nouveau signalement  
+                    - Body : Details du signalement(type, description etc)  
+
+**GET** /api/reports/:id : - Récupere les details d'un signalement spécifique  
+                       - params : id du signalement  
+
+
