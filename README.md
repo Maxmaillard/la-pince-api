@@ -45,7 +45,7 @@ Application :
         🚨 Signalement : Signalement d'un bug ou d'un probleme
 ```
 ### wireframe 
-[voir les images utilitaires](./images-utilitaires/images-wireframe.png)
+[voir les images utilitaires](./images-utilitaires/Images_wireframe.png)
 
 
 ## 🛠️ Technologies utilisées
