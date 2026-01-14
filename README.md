@@ -45,8 +45,8 @@ Application :
         🚨 Signalement : Signalement d'un bug ou d'un probleme
 ```
 ### wireframe 
+[voir les images utilitaires](./images-utilitaires/images-wireframe.png)
 
-<img width="1081" height="761" alt="Diagramme sans nom drawio" src="https://github.com/user-attachments/assets/afd8015a-ea2b-441f-865c-58052c40e8d5" />
 
 ## 🛠️ Technologies utilisées
 
