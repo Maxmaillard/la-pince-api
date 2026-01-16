@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@lucide/svelte": "^0.562.0",
+    "@zerodevx/svelte-toast": "^0.9.6",
+    "daisyui": "^5.5.14",
+    "svelte": "^5.46.4",
+    "tailwindcss": "^4.1.18",
+    "vite": "^7.3.1"
+  }
+}
