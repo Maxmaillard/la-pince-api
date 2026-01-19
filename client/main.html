@@ -16,8 +16,9 @@
             </div>
             <nav>
                 <button class="nav-item"><i class="fa-regular fa-circle-user"></i> Mon Profil</button>
-                <button class="nav-item"><i class="fa-solid fa-circle-info"></i>Mon Dashboard</button>
+                <button class="nav-item active"><i class="fa-solid fa-chart-column"></i>Mon Dashboard</button>
                 <button class="nav-item"><i class="fa-solid fa-building-columns"></i>Mes groupes</button>
+                <button class="nav-item"><i class="fa-solid fa-circle-info"></i>Informations</button>
             </nav>
             <div class="sidebar-footer">
                 <button class="btn-report"><i class="fa-solid fa-circle-exclamation"></i> Signaler</button>
@@ -30,116 +31,99 @@
                 <h1 id="main-title">DASHBOARD</h1>
             </header>
 
-            <section class="dashboard-card">
-                <div class="transaction-list">
-        <h3 class="list-title">Historique des transactions</h3>
+            <section id="page-dashboard" class="content-section">
+                <div class="dashboard-card">
+                    <div class="transaction-list">
+                        <h3 class="list-title">Historique des transactions</h3>
 
-        <div class="transactions-container">
+                        <div class="transactions-container">
+                            <div class="transaction-item">
+                                <span class="label">Virement reçu</span> 
+                                <div class="actions">
+                                    <span class="amount pos">150,00€</span>
+                                    <div class="icon-group">
+                                        <i class="fa-solid fa-pen-to-square edit-icon"></i>
+                                        <i class="fa-solid fa-trash delete-icon"></i>
+                                    </div>
+                                </div>
+                            </div>  
 
-            <!-- <div class="transaction-item active-row">
-                <span class="label">template card</span> 
-                <div class="actions">
-                    <span class="amount neg"> xx,xx€</span>
-        
-                    <div class="icon-group">
-                        <i class="fa-solid fa-pen-to-square edit-icon"></i>
-                        <i class="fa-solid fa-trash delete-icon"></i>
+                            <div class="transaction-item">
+                                <span class="label">Courses Carrefour</span> 
+                                <div class="actions">
+                                    <span class="amount neg">-45,20€</span>
+                                    <div class="icon-group">
+                                        <i class="fa-solid fa-pen-to-square edit-icon"></i>
+                                        <i class="fa-solid fa-trash delete-icon"></i>
+                                    </div>
+                                </div>
+                            </div> 
+
+                            <div class="transaction-item">
+                                <span class="label">Virement SAS DEVWEB</span> 
+                                <div class="actions">
+                                    <span class="amount pos">1600€</span>
+                                    <div class="icon-group">
+                                        <i class="fa-solid fa-pen-to-square edit-icon"></i>
+                                        <i class="fa-solid fa-trash delete-icon"></i>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+
+                        <div class="transaction-item">
+                                <span class="label">Casino'clock</span> 
+                                <div class="actions">
+                                    <span class="amount neg">-6400€</span>
+                                    <div class="icon-group">
+                                        <i class="fa-solid fa-pen-to-square edit-icon"></i>
+                                        <i class="fa-solid fa-trash delete-icon"></i>
+                                    </div>
+                                </div>
+                            </div> 
+
+                        <button class="add-transaction">
+                            Ajouter une transaction <i class="fa-solid fa-circle-plus"></i>
+                        </button>
                     </div>
-                </div>
-            </div>   -->
 
-            <div class="transaction-item active-row">
-                <span class="label">template card</span> 
-                <div class="actions">
-                    <span class="amount pos"> 10,00€</span>
-        
-                    <div class="icon-group">
-                        <i class="fa-solid fa-pen-to-square edit-icon"></i>
-                        <i class="fa-solid fa-trash delete-icon"></i>
+                    <div class="chart-section">
+                        <div class="pie-chart"></div>
+                        <ul class="legend">
+                            <li class="color-1">DIVERS</li>
+                            <li class="color-2">LOYER</li>
+                            <li class="color-3">ALIMENTATION</li>
+                            <li class="color-4">LOISIRS</li>
+                            <li class="color-5">EPARGNE</li>
+                        </ul>
                     </div>
-                </div>
-            </div>  
-
-            <div class="transaction-item active-row">
-                <span class="label">template card</span> 
-                <div class="actions">
-                    <span class="amount neg"> xx,xx€</span>
-        
-                    <div class="icon-group">
-                        <i class="fa-solid fa-pen-to-square edit-icon"></i>
-                        <i class="fa-solid fa-trash delete-icon"></i>
-                    </div>
-                </div>
-            </div> 
-
-
-            <div class="transaction-item active-row">
-                <span class="label">template card</span> 
-                <div class="actions">
-                    <span class="amount neg"> xx,xx€</span>
-        
-                    <div class="icon-group">
-                        <i class="fa-solid fa-pen-to-square edit-icon"></i>
-                        <i class="fa-solid fa-trash delete-icon"></i>
-                    </div>
-                </div>
-            </div> 
-
-            <div class="transaction-item active-row">
-                <span class="label">template card</span> 
-                <div class="actions">
-                    <span class="amount neg"> xx,xx€</span>
-        
-                    <div class="icon-group">
-                        <i class="fa-solid fa-pen-to-square edit-icon"></i>
-                        <i class="fa-solid fa-trash delete-icon"></i>
-                    </div>
-                </div>
-            </div> 
-
-            <div class="transaction-item active-row">
-                <span class="label">template card</span> 
-                <div class="actions">
-                    <span class="amount neg"> xx,xx€</span>
-        
-                    <div class="icon-group">
-                        <i class="fa-solid fa-pen-to-square edit-icon"></i>
-                        <i class="fa-solid fa-trash delete-icon"></i>
-                    </div>
-                </div>
-            </div> 
-
-            <div class="transaction-item active-row">
-                <span class="label">template card</span> 
-                <div class="actions">
-                    <span class="amount neg"> xx,xx€</span>
-        
-                    <div class="icon-group">
-                        <i class="fa-solid fa-pen-to-square edit-icon"></i>
-                        <i class="fa-solid fa-trash delete-icon"></i>
-                    </div>
-                </div>
-            </div> 
-    </div>
-
-    <button class="add-transaction">
-        Ajouter une transaction <i class="fa-solid fa-circle-plus"></i>
-    </button>
-</div>
-
-                <div class="chart-section">
-                    <div class="pie-chart"></div>
-                    <ul class="legend">
-                        <li class="color-1">DIVERS</li>
-                        <li class="color-2">LOYER</li>
-                        <li class="color-3">ALIMENTATION</li>
-                        <li class="color-4">LOISIRS</li>
-                        <li class="color-5">EPARGNE</li>
-                    </ul>
                 </div>
             </section>
+
+            <section id="page-profil" class="content-section hidden">
+                <div class="dashboard-card">
+                    <h2><i class="fa-regular fa-circle-user"></i> Paramètres du Profil</h2>
+                    <p>Gérez vos informations personnelles et votre sécurité.</p>
+                </div>
+            </section>
+
+            <section id="page-groupes" class="content-section hidden">
+                <div class="dashboard-card">
+                    <h2><i class="fa-solid fa-building-columns"></i> Gestion des Groupes</h2>
+                    <p>Retrouvez ici vos comptes partagés avec vos amis ou votre famille.</p>
+                </div>
+            </section>
+
+            <section id="page-informations" class="content-section hidden">
+                <div class="dashboard-card">
+                    <h2><i class="fa-solid fa-circle-info"></i> Centre d'aide</h2>
+                    <p>Besoin d'aide ? Consultez notre documentation ou contactez le support.</p>
+                </div>
+            </section>
+
         </main>
     </div>
+
     <script src="mainscript.js"></script>
 </body>
 </html>

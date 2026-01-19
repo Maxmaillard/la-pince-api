@@ -73,6 +73,7 @@ nav {
     transition: 0.3s;
 }
 
+/* Style pour le bouton actif (cliqué) */
 .nav-item.active {
     background: #4a7a96;
     box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
@@ -111,11 +112,23 @@ nav {
 .btn-logout { background: #e74c3c; color: white; }
 .btn-logout:hover { background: #b03a2e; }
 
-/* --- Main Content --- */
+/* --- Main Content & Navigation --- */
 .main-content {
     flex: 1;
     display: flex;
     flex-direction: column;
+}
+
+/* AJOUT : S'assure que chaque page prend toute la place disponible */
+.content-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* AJOUT : Classe pour masquer les pages non sélectionnées */
+.hidden {
+    display: none !important;
 }
 
 .top-bar {
@@ -158,6 +171,12 @@ nav {
     font-weight: 500;
 }
 
+.transactions-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .transaction-item {
     background: white;
     color: #333;
@@ -174,7 +193,7 @@ nav {
     transform: translateX(-5px);
 }
 
-/* --- Système de tiroir (Amount & Icons) --- */
+/* --- Système de tiroir (Montant & Icônes) --- */
 .actions {
     display: flex;
     align-items: center;
@@ -198,6 +217,7 @@ nav {
     pointer-events: none;
 }
 
+/* Effet au survol de la ligne */
 .transaction-item:hover .amount {
     transform: translateX(-5px);
 }
@@ -217,10 +237,11 @@ nav {
 .edit-icon:hover { color: #f1c40f; transform: scale(1.2); }
 .delete-icon:hover { color: #e74c3c; transform: scale(1.2); }
 
-/* --- Couleurs & Boutons --- */
+/* --- Couleurs des montants --- */
 .neg { color: var(--neg-color); font-weight: bold; }
 .pos { color: var(--pos-color); font-weight: bold; }
 
+/* --- Bouton Ajouter --- */
 .add-transaction {
     background: none;
     border: none;
@@ -237,6 +258,8 @@ nav {
 
 .add-transaction:hover { color: #eee; }
 
-.hidden {
-    display: none !important;
+/* --- Style des titres de pages secondaires --- */
+.content-section h2 {
+    color: white;
+    margin-top: 0;
 }
