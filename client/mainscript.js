@@ -37,6 +37,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+//selection du checkbox (ton input id="dark-mode")
+const darkModeToggle = document.getElementById('dark-mode');
+
+//Verif si user click sur le switch
+darkModeToggle.addEventListener('change', () => {
+    if (darkModeToggle.checked) {
+        document.body.classList.add('dark-theme');
+        console.log("Mode sombre activé");
+    } else {
+        document.body.classList.remove('dark-theme');
+        console.log("Mode sombre désactivé");
+    }
+});
+
     // SUPPRESSION TRANSACTION (wip)
 //     const transactionsContainer = document.querySelector('.transactions-container');
     
