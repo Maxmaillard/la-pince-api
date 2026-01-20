@@ -37,6 +37,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+//selection du checkbox (ton input id="dark-mode")
+const darkModeToggle = document.getElementById('dark-mode');
+
+//Verif si user click sur le switch
+darkModeToggle.addEventListener('change', () => {
+    if (darkModeToggle.checked) {
+        document.body.classList.add('dark-theme');
+        console.log("Mode sombre activé");
+    } else {
+        document.body.classList.remove('dark-theme');
+        console.log("Mode sombre désactivé");
+    }
+});
+
+// verif si darkmode est on/off
+if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark-theme');
+    darkModeToggle.checked = true;
+}
+
+// stockage de l'info dans le localStorage
+darkModeToggle.addEventListener('change', () => {
+    if (darkModeToggle.checked) {
+        document.body.classList.add('dark-theme');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        document.body.classList.remove('dark-theme');
+        localStorage.setItem('theme', 'light');
+    }
+});
+
     // SUPPRESSION TRANSACTION (wip)
 //     const transactionsContainer = document.querySelector('.transactions-container');
     
