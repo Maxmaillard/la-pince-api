@@ -51,6 +51,23 @@ darkModeToggle.addEventListener('change', () => {
     }
 });
 
+// verif si darkmode est on/off
+if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark-theme');
+    darkModeToggle.checked = true;
+}
+
+// stockage de l'info dans le localStorage
+darkModeToggle.addEventListener('change', () => {
+    if (darkModeToggle.checked) {
+        document.body.classList.add('dark-theme');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        document.body.classList.remove('dark-theme');
+        localStorage.setItem('theme', 'light');
+    }
+});
+
     // SUPPRESSION TRANSACTION (wip)
 //     const transactionsContainer = document.querySelector('.transactions-container');
     

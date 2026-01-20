@@ -321,7 +321,7 @@ nav {
 /* DARK MODE */
 
 body.dark-theme {
-    --bg-color: #1a1a1a;
+    --bg-color: #000000;
     --glass-bg: rgba(0, 0, 0, 0.4);
     --glass-border: rgba(255, 255, 255, 0.1);
     --text-color: #e0e0e0;
