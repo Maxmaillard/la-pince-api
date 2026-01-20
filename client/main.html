@@ -11,7 +11,7 @@
     <div class="container">
         <aside class="sidebar">
             <div class="logo">
-                <img src="logo_la_pince.png" alt="La Pince">
+                <img src="../images-utilitaires/LOGO_LAPINCE_BLANC.png" alt="La Pince">
                 <h2>LA PINCE</h2>
             </div>
             <nav>
@@ -101,9 +101,55 @@
             </section>
 
             <section id="page-profil" class="content-section hidden">
-                <div class="dashboard-card">
-                    <h2><i class="fa-regular fa-circle-user"></i> Paramètres du Profil</h2>
-                    <p>Gérez vos informations personnelles et votre sécurité.</p>
+    <div class="dashboard-card">
+        
+        <div class="user-info">
+            <h2 class="section-subtitle"><i class="fa-regular fa-circle-user"></i> Paramètres du Profil</h2>
+            
+            <div class="info-group">
+                <span class="info-group__label">Nom</span>
+                <p class="info-group__value">Gates</p>
+            </div>
+
+            <div class="info-group">
+                <span class="info-group__label">Prénom</span>
+                <p class="info-group__value">Bill</p>
+            </div>
+
+            <div class="info-group">
+                <span class="info-group__label">Email</span>
+                <p class="info-group__value">bill.gates@exemple.fr</p>
+            </div>
+
+            <div class="info-group">
+                <span class="info-group__label">Apparence</span>
+                <div class="switch">
+                    <span class="switch__text">Mode Sombre</span>
+                    <input type="checkbox" id="dark-mode" class="switch__input">
+                    <label for="dark-mode" class="switch__slider"></label>
+                </div>
+            </div>
+        </div>
+
+        <div class="transaction-list">
+            <h3 class="list-title">Sécurité</h3>
+            
+            <form class="form-password" action="" method="POST">
+                <div class="form-group">
+                    <label class="info-group__label">Nouveau mot de passe</label>
+                    <input type="password" name="new_password" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="info-group__label">Confirmation</label>
+                    <input type="password" name="confirm_password" class="form-input" required>
+                </div>
+                <button type="submit" class="btn-submit">Mettre à jour</button>
+            </form>
+        </div>
+
+    </div>
+</section>
+        </main>
                 </div>
             </section>
 

@@ -263,3 +263,57 @@ nav {
     color: white;
     margin-top: 0;
 }
+
+
+/* --- CSS Page Profil --- */
+.user-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.section-subtitle {
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+}
+
+.info-group__label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    opacity: 0.7;
+    font-weight: bold;
+}
+
+.info-group__value {
+    font-size: 1.1rem;
+    margin: 5px 0 0 0;
+}
+
+/* --- Formulaire --- */
+.form-group {
+    margin-bottom: 15px;
+    max-width: 90%;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 10px;
+    border: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.btn-submit {
+    width: 30%;
+    padding: 12px;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    transition: 0.3s;
+}
