@@ -29,8 +29,6 @@ CREATE DATABASE mon_projet OWNER mon_user;
 psql -U mon_user -d mon_projet
 
 6️⃣ Scripts disponibles (VS Code / Terminal):
-🔄 Réinitialiser complètement la base (DROP + CREATE)
-- npm run reset:tables
 
 Créer uniquement les tables:
 - npm run create:tables

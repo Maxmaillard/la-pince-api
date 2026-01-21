@@ -14,8 +14,8 @@
   },
   "scripts": { "dev": "nodemon app.js", 
   "create:tables": "node migrations/create-tables.js",
-   "seed:tables": "node migrations/seed-tables.js",
-   "reset:tables": "node migrations/reset-tables.js"
+   "seed:tables": "node migrations/seed-tables.js"
+   
 
 
   }
