@@ -409,6 +409,13 @@ body.dark-theme .transaction-item {
     letter-spacing: 0.5px;
 }
 
+
+/* --- Presentation team - onglet info --- */
+
+.staff-card{
+    margin-top: 1em;
+}
+
 .team{
     
     display: flex;
