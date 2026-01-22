@@ -363,7 +363,13 @@ body.dark-theme .transaction-item {
 
 /* --- Page informations--- */
 
+#page-informations {
+    /* empeche la page d'être scrollable */
+    height: 100vh;
+    overflow: hidden;
+}
 /* ---information container--- */
+
 .information-card{
     display: flex;
     flex-direction: row;
@@ -375,7 +381,7 @@ body.dark-theme .transaction-item {
     border-radius: 20px;
     padding: 30px;
     flex-direction: column;
-    max-height: 50%; 
+
     /* scroll */
     overflow-y: auto;  
     overflow-x: hidden; 
