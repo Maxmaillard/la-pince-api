@@ -102,17 +102,71 @@ const myChart = new Chart(ctx, {
     }
 });
 
-    // SUPPRESSION TRANSACTION (wip)
-//     const transactionsContainer = document.querySelector('.transactions-container');
+// Interaction bouton ajouter transaction 
+const addBtn = document.querySelector('.add-transaction');
+const modal = document.getElementById('modal-transaction');
+const closeBtn = document.getElementById('close-modal');
+
+addBtn.addEventListener('click', () => {
+    modal.classList.add('active');
+});
+
+closeBtn.addEventListener('click', () => {
+    modal.classList.remove('active');
+});
+
+window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        modal.classList.remove('active');
+    }
+});
+
+const transactionForm = document.getElementById('transaction-form');
+const transactionsContainer = document.querySelector('.transactions-container');
+
+transactionForm.addEventListener('submit', (e) => {
+    e.preventDefault(); // Empêche le rechargement de la page
+
+    //Récupération des valeurs
+    const name = document.getElementById('t-name').value;
+    const amount = parseFloat(document.getElementById('t-amount').value);
     
-//     if (transactionsContainer) {
-//         transactionsContainer.addEventListener('click', (e) => {
-//             if (e.target.classList.contains('delete-icon')) {
-//                 const row = e.target.closest('.transaction-item');
-//                 row.style.opacity = '0';
-//                 row.style.transform = 'translateX(20px)';
-//                 setTimeout(() => row.remove(), 300);
-//             }
-//         });
-//     }
+    //Déterminer si c'est positif ou négatif pour le style
+    const typeClass = amount >= 0 ? 'pos' : 'neg';
+    const formattedAmount = amount.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' });
+
+    //Création du HTML de la nouvelle ligne
+    const newTransaction = document.createElement('div');
+    newTransaction.classList.add('transaction-item');
+    
+    newTransaction.innerHTML = `
+        <span class="label">${name}</span> 
+        <div class="actions">
+            <span class="amount ${typeClass}">${formattedAmount}</span>
+            <div class="icon-group">
+                <i class="fa-solid fa-pen-to-square edit-icon"></i>
+                <i class="fa-solid fa-trash delete-icon"></i>
+            </div>
+        </div>
+    `;
+
+    //Ajouter au début de la liste (prepend)
+    transactionsContainer.prepend(newTransaction);
+
+    //Fermer la modale et vider le formulaire
+    modal.classList.remove('active');
+    transactionForm.reset();
+});
+
+    // SUPPRESSION TRANSACTION
+    if (transactionsContainer) {
+        transactionsContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('delete-icon')) {
+                const row = e.target.closest('.transaction-item');
+                row.style.opacity = '0';
+                row.style.transform = 'translateX(20px)';
+                setTimeout(() => row.remove(), 300);
+            }
+        });
+    }
 });
