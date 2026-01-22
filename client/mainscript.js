@@ -68,6 +68,40 @@ darkModeToggle.addEventListener('change', () => {
     }
 });
 
+
+const ctx = document.getElementById('myChart');
+
+const myChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ['DIVERS', 'LOYER', 'ALIMENTATION', 'LOISIRS', 'EPARGNE'],
+        datasets: [{
+            label: 'Dépenses',
+            data: [10, 10, 10, 10, 10],
+            backgroundColor: [
+                '#FF6384',
+                '#36A2EB',
+                '#FFCE56',
+                '#4BC0C0',
+                '#9966FF'
+            ],
+            borderWidth: 0,
+            hoverOffset: 10
+        }]
+    },
+    options: {
+        responsive: true,
+        layout: {
+            padding: 20
+        },
+        plugins: {
+            legend: {
+                display: false
+            }
+        }
+    }
+});
+
     // SUPPRESSION TRANSACTION (wip)
 //     const transactionsContainer = document.querySelector('.transactions-container');
     

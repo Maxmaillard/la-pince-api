@@ -7,6 +7,7 @@
   <title>La Pince - Dashboard</title>
   <link rel="stylesheet" href="mainstyle.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -90,17 +91,9 @@
               Ajouter une transaction <i class="fa-solid fa-circle-plus"></i>
             </button>
           </div>
-
-          <div class="chart-section">
-            <div class="pie-chart"></div>
-            <ul class="legend">
-              <li class="color-1">DIVERS</li>
-              <li class="color-2">LOYER</li>
-              <li class="color-3">ALIMENTATION</li>
-              <li class="color-4">LOISIRS</li>
-              <li class="color-5">EPARGNE</li>
-            </ul>
-          </div>
+            <div class="chart-section">
+                <canvas id="myChart"></canvas>
+            </div>
         </div>
       </section>
 
