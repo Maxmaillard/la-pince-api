@@ -1,175 +1,232 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Pince - Dashboard</title>
-    <link rel="stylesheet" href="mainstyle.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Pince - Dashboard</title>
+  <link rel="stylesheet" href="mainstyle.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body>
-    <div class="container">
-        <aside class="sidebar">
-            <div class="logo">
-                <img src="../images-utilitaires/LOGO_LAPINCE_BLANC.png" alt="La Pince">
-                <h2>LA PINCE</h2>
-            </div>
-            <nav>
-                <button class="nav-item"><i class="fa-regular fa-circle-user"></i> Mon Profil</button>
-                <button class="nav-item active"><i class="fa-solid fa-chart-column"></i>Mon Dashboard</button>
-                <button class="nav-item"><i class="fa-solid fa-building-columns"></i>Mes groupes</button>
-                <button class="nav-item"><i class="fa-solid fa-circle-info"></i>Informations</button>
-            </nav>
-            <div class="sidebar-footer">
-                <button class="btn-report"><i class="fa-solid fa-circle-exclamation"></i> Signaler</button>
-                <button class="btn-logout"><i class="fa-solid fa-power-off"></i> Déconnexion</button>
-            </div>
-        </aside>
-        
-        <main class="main-content">
-            <header class="top-bar">
-                <h1 id="main-title">DASHBOARD</h1>
-            </header>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="../images-utilitaires/LOGO_LAPINCE_BLANC.png" alt="La Pince">
+        <h2>LA PINCE</h2>
+      </div>
+      <nav>
+        <button class="nav-item"><i class="fa-regular fa-circle-user"></i> Mon Profil</button>
+        <button class="nav-item active"><i class="fa-solid fa-chart-column"></i>Mon Dashboard</button>
+        <button class="nav-item"><i class="fa-solid fa-building-columns"></i>Mes groupes</button>
+        <button class="nav-item"><i class="fa-solid fa-circle-info"></i>Informations</button>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="btn-report"><i class="fa-solid fa-circle-exclamation"></i> Signaler</button>
+        <button class="btn-logout"><i class="fa-solid fa-power-off"></i> Déconnexion</button>
+      </div>
+    </aside>
 
-            <section id="page-dashboard" class="content-section">
-                <div class="dashboard-card">
-                    <div class="transaction-list">
-                        <h3 class="list-title">Historique des transactions</h3>
+    <main class="main-content">
+      <header class="top-bar">
+        <h1 id="main-title">DASHBOARD</h1>
+      </header>
 
-                        <div class="transactions-container">
-                            <div class="transaction-item">
-                                <span class="label">Virement reçu</span> 
-                                <div class="actions">
-                                    <span class="amount pos">150,00€</span>
-                                    <div class="icon-group">
-                                        <i class="fa-solid fa-pen-to-square edit-icon"></i>
-                                        <i class="fa-solid fa-trash delete-icon"></i>
-                                    </div>
-                                </div>
-                            </div>  
+      <!-- === page dashboard === -->
 
-                            <div class="transaction-item">
-                                <span class="label">Courses Carrefour</span> 
-                                <div class="actions">
-                                    <span class="amount neg">-45,20€</span>
-                                    <div class="icon-group">
-                                        <i class="fa-solid fa-pen-to-square edit-icon"></i>
-                                        <i class="fa-solid fa-trash delete-icon"></i>
-                                    </div>
-                                </div>
-                            </div> 
+      <section id="page-dashboard" class="content-section">
+        <div class="dashboard-card">
+          <div class="transaction-list">
+            <h3 class="list-title">Historique des transactions</h3>
 
-                            <div class="transaction-item">
-                                <span class="label">Virement SAS DEVWEB</span> 
-                                <div class="actions">
-                                    <span class="amount pos">1600€</span>
-                                    <div class="icon-group">
-                                        <i class="fa-solid fa-pen-to-square edit-icon"></i>
-                                        <i class="fa-solid fa-trash delete-icon"></i>
-                                    </div>
-                                </div>
-                            </div> 
-                        </div>
-
-                        <div class="transaction-item">
-                                <span class="label">Casino'clock</span> 
-                                <div class="actions">
-                                    <span class="amount neg">-6400€</span>
-                                    <div class="icon-group">
-                                        <i class="fa-solid fa-pen-to-square edit-icon"></i>
-                                        <i class="fa-solid fa-trash delete-icon"></i>
-                                    </div>
-                                </div>
-                            </div> 
-
-                        <button class="add-transaction">
-                            Ajouter une transaction <i class="fa-solid fa-circle-plus"></i>
-                        </button>
-                    </div>
-
-                    <div class="chart-section">
-                        <div class="pie-chart"></div>
-                        <ul class="legend">
-                            <li class="color-1">DIVERS</li>
-                            <li class="color-2">LOYER</li>
-                            <li class="color-3">ALIMENTATION</li>
-                            <li class="color-4">LOISIRS</li>
-                            <li class="color-5">EPARGNE</li>
-                        </ul>
-                    </div>
+            <div class="transactions-container">
+              <div class="transaction-item">
+                <span class="label">Virement reçu</span>
+                <div class="actions">
+                  <span class="amount pos">150,00€</span>
+                  <div class="icon-group">
+                    <i class="fa-solid fa-pen-to-square edit-icon"></i>
+                    <i class="fa-solid fa-trash delete-icon"></i>
+                  </div>
                 </div>
-            </section>
+              </div>
 
-            <section id="page-profil" class="content-section hidden">
-    <div class="dashboard-card">
+              <div class="transaction-item">
+                <span class="label">Courses Carrefour</span>
+                <div class="actions">
+                  <span class="amount neg">-45,20€</span>
+                  <div class="icon-group">
+                    <i class="fa-solid fa-pen-to-square edit-icon"></i>
+                    <i class="fa-solid fa-trash delete-icon"></i>
+                  </div>
+                </div>
+              </div>
+
+              <div class="transaction-item">
+                <span class="label">Virement SAS DEVWEB</span>
+                <div class="actions">
+                  <span class="amount pos">1600€</span>
+                  <div class="icon-group">
+                    <i class="fa-solid fa-pen-to-square edit-icon"></i>
+                    <i class="fa-solid fa-trash delete-icon"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="transaction-item">
+              <span class="label">Casino'clock</span>
+              <div class="actions">
+                <span class="amount neg">-6400€</span>
+                <div class="icon-group">
+                  <i class="fa-solid fa-pen-to-square edit-icon"></i>
+                  <i class="fa-solid fa-trash delete-icon"></i>
+                </div>
+              </div>
+            </div>
+
+            <button class="add-transaction">
+              Ajouter une transaction <i class="fa-solid fa-circle-plus"></i>
+            </button>
+          </div>
+
+          <div class="chart-section">
+            <div class="pie-chart"></div>
+            <ul class="legend">
+              <li class="color-1">DIVERS</li>
+              <li class="color-2">LOYER</li>
+              <li class="color-3">ALIMENTATION</li>
+              <li class="color-4">LOISIRS</li>
+              <li class="color-5">EPARGNE</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- === page profil === -->
+
+      <section id="page-profil" class="content-section hidden">
         
-        <div class="user-info">
-            <h2 class="section-subtitle"><i class="fa-regular fa-circle-user"></i> Paramètres du Profil</h2>
-            
-            <div class="info-group">
+        <div class="profil-card">
+
+            <div class="user-info">
+                <h2 class="section-subtitle"><i class="fa-regular fa-circle-user"></i> Paramètres du Profil</h2>
+                <!-- NOM -->
+                <div class="info-group">
                 <span class="info-group__label">Nom</span>
                 <p class="info-group__value">Gates</p>
-            </div>
-
-            <div class="info-group">
+                </div>
+                <!-- PRENOM -->
+                <div class="info-group">
                 <span class="info-group__label">Prénom</span>
                 <p class="info-group__value">Bill</p>
-            </div>
-
-            <div class="info-group">
+                </div>
+                <!-- MAIL -->
+                <div class="info-group">
                 <span class="info-group__label">Email</span>
                 <p class="info-group__value">bill.gates@exemple.fr</p>
-            </div>
-
-            <div class="info-group">
+                </div>
+                <!-- DARKMODE-BTN -->
+                <div class="info-group">
                 <span class="info-group__label">Apparence</span>
                 <div class="switch">
                     <span class="switch__text">Mode Sombre</span>
                     <input type="checkbox" id="dark-mode" class="switch__input">
                     <label for="dark-mode" class="switch__slider"></label>
                 </div>
+                </div>
             </div>
-        </div>
 
-        <div class="transaction-list">
-            <h3 class="list-title">Sécurité</h3>
-            
-            <form class="form-password" action="" method="POST">
+            <div class="transaction-list">
+              <h3 class="list-title">Sécurité</h3>
+                <!-- formulaire changement MDP -->
+              <form class="form-password" action="" method="POST">
                 <div class="form-group">
-                    <label class="info-group__label">Nouveau mot de passe</label>
-                    <input type="password" name="new_password" class="form-input" required>
+                  <label class="info-group__label">Nouveau mot de passe</label>
+                  <input type="password" name="new_password" class="form-input" required>
                 </div>
                 <div class="form-group">
-                    <label class="info-group__label">Confirmation</label>
-                    <input type="password" name="confirm_password" class="form-input" required>
+                  <label class="info-group__label">Confirmation</label>
+                  <input type="password" name="confirm_password" class="form-input" required>
                 </div>
                 <button type="submit" class="btn-submit">Mettre à jour</button>
-            </form>
+              </form>
+            </div>
+
+        </div> 
+
+        
+      </section>
+      
+      <!-- === page groupes === -->
+      <section id="page-groupes" class="content-section hidden">
+        <div class="dashboard-card">
+          <h2><i class="fa-solid fa-building-columns"></i> Gestion des Groupes</h2>
+          <p>Retrouvez ici vos comptes partagés avec vos amis ou votre famille.</p>
+        </div>
+      </section>
+
+      <!-- === page informations === -->
+
+      <section id="page-informations" class="content-section hidden">
+    <div class="information-card">
+        <h2><i class="fa-solid fa-circle-info"></i> Règlement Général sur la Protection des Données</h2>
+
+        <div class="legal-item">
+            <h4>1. Responsable du Traitement</h4>
+            <p>Les données collectées via l'application <strong>La Pince</strong> sont traitées par l'équipe de développement dans le cadre d'un projet académique.</p>
         </div>
 
+        <div class="legal-item">
+            <h4>2. Données Collectées</h4>
+            <p>Nous collectons uniquement les informations strictement nécessaires au fonctionnement du dashboard :</p>
+            <ul>
+                <li><strong>Identification :</strong> Nom, Prénom, adresse e-mail.</li>
+                <li><strong>Données financières :</strong> Historique des transactions saisies manuellement.</li>
+                <li><strong>Préférences :</strong> Paramètres d'affichage (mode sombre/clair).</li>
+            </ul>
+        </div>
+
+        <div class="legal-item">
+            <h4>3. Finalité du Traitement</h4>
+            <p>Vos données sont utilisées exclusivement pour la gestion de votre profil, le calcul statistique de vos dépenses et l'amélioration de l'expérience utilisateur.</p>
+        </div>
+
+        <div class="legal-item">
+            <h4>4. Conservation et Sécurité</h4>
+            <p>Les données sont conservées pour la durée de vie de votre compte. <strong>La Pince</strong> n'effectue aucun transfert de données vers des tiers. Le stockage est sécurisé via des protocoles de hachage pour les mots de passe.</p>
+        </div>
+
+
+    <div class="staff-card">
+        <h2><i class="fa-solid fa-users"></i> Qui sommes-nous ?</h2>
+        <p class="staff-description">
+            Nous sommes une équipe de futurs <strong>développeurs web</strong> passionnés, mettant en pratique les compétences acquises au sein de la formation <strong>DWWM d'O'clock</strong>. 
+            Nous collaborons en mode projet, de la conception du cahier des charges jusqu'au déploiement, pour donner vie à des solutions numériques modernes et intuitives.
+        </p>
+
+        <div class="team">
+            <div class="member">
+                <div class="member-avatar"><i class="fa-solid fa-user-ninja"></i></div>
+                <span>Membre 1</span>
+            </div>
+            <div class="member">
+                <div class="member-avatar"><i class="fa-solid fa-user-ninja"></i></div>
+                <span>Membre 2</span>
+            </div>
+            <div class="member">
+                <div class="member-avatar"><i class="fa-solid fa-user-ninja"></i></div>
+                <span>Membre 3</span>
+            </div>
+        </div>
+            </div>
     </div>
 </section>
-        </main>
-                </div>
-            </section>
+    </main>
+  </div>
 
-            <section id="page-groupes" class="content-section hidden">
-                <div class="dashboard-card">
-                    <h2><i class="fa-solid fa-building-columns"></i> Gestion des Groupes</h2>
-                    <p>Retrouvez ici vos comptes partagés avec vos amis ou votre famille.</p>
-                </div>
-            </section>
-
-            <section id="page-informations" class="content-section hidden">
-                <div class="dashboard-card">
-                    <h2><i class="fa-solid fa-circle-info"></i> Centre d'aide</h2>
-                    <p>Besoin d'aide ? Consultez notre documentation ou contactez le support.</p>
-                </div>
-            </section>
-
-        </main>
-    </div>
-
-    <script src="mainscript.js"></script>
+  <script src="mainscript.js"></script>
 </body>
+
 </html>

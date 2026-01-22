@@ -140,7 +140,7 @@ nav {
     margin-bottom: 20px;
 }
 
-.dashboard-card {
+.dashboard-card{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -266,18 +266,40 @@ nav {
 
 
 /* --- CSS Page Profil --- */
-.user-info {
+
+
+/* Grille profil horizontale */
+#page-profil .profil-card {
+   display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
     flex: 1;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 30px;
+}
+/* Section gauche colonne */
+#page-profil .user-info {
+    flex: 1; /* Prend la moitié de l'espace */
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
+/* Section droite adaptative */
+#page-profil .transaction-list {
+    flex: 1; 
+    width: auto; 
+}
+
+
 
 .section-subtitle {
     margin-bottom: 20px;
     font-size: 1.4rem;
 }
-
+/*  */
 .info-group__label {
     font-size: 0.75rem;
     text-transform: uppercase;
@@ -295,7 +317,9 @@ nav {
     margin-bottom: 15px;
     max-width: 90%;
 }
-
+.user-info{
+    flex-direction: column;
+}
 .form-input {
     width: 100%;
     padding: 10px;
@@ -318,6 +342,7 @@ nav {
     transition: 0.3s;
 }
 
+
 /* DARK MODE */
 
 body.dark-theme {
@@ -334,4 +359,69 @@ body.dark-theme {
 body.dark-theme .transaction-item {
     background: rgba(255, 255, 255, 0.05);
     color: white;
+}
+
+/* --- Page informations--- */
+
+/* ---information container--- */
+.information-card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: baseline;
+    flex: 1;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 30px;
+    flex-direction: column;
+    max-height: 50%; 
+    /* scroll */
+    overflow-y: auto;  
+    overflow-x: hidden; 
+    }
+
+    /* --- mise en forme --- */
+    /* --- aération --- */
+.legal-item {
+    margin-top: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 15px;
+    
+}
+.legal-item p, .legal-item li {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.85);
+}
+/* --- suppirme la dernière bordure --- */
+.legal-item:last-child {
+    border-bottom: none;
+}
+
+
+/* --- Titres rouges stylisés --- */
+.legal-item h4 {
+    color: #e74c3c;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+
+/* --- Presentation team - onglet info --- */
+
+.staff-card{
+    margin-top: 1em;
+}
+
+.team{
+    
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.member{
+    padding: 1em;
 }
