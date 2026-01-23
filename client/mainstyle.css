@@ -5,6 +5,7 @@
     --text-color: white;
     --neg-color: #e74c3c;
     --pos-color: #27ae60;
+    --modal-bg: linear-gradient(135deg, #5d7e8e, #7ba1b2); /* Ajout pour gestion dynamique */
 }
 
 /* --- Base & Centrage --- */
@@ -299,7 +300,7 @@ nav {
     margin-bottom: 20px;
     font-size: 1.4rem;
 }
-/*  */
+/* */
 .info-group__label {
     font-size: 0.75rem;
     text-transform: uppercase;
@@ -350,6 +351,7 @@ body.dark-theme {
     --glass-bg: rgba(0, 0, 0, 0.4);
     --glass-border: rgba(255, 255, 255, 0.1);
     --text-color: #e0e0e0;
+    --modal-bg: linear-gradient(135deg, #0f0f0f, #2c2c2c); /* Ajout dynamique */
 }
 
 body.dark-theme {
@@ -459,8 +461,7 @@ body.dark-theme .transaction-item {
 }
 
 .modal-content {
-    background: var(--bg-color);
-    background: linear-gradient(135deg, #5d7e8e, #7ba1b2);
+    background: var(--modal-bg); /* c478 */
     padding: 30px;
     border-radius: 20px;
     border: 1px solid var(--glass-border);
@@ -487,7 +488,7 @@ body.dark-theme .transaction-item {
     cursor: pointer;
 }
 
-/*petite animation quand on ajoute une popup ^^*/
+/*petite animation quand on ajoute une depense*/
 @keyframes slideIn {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -495,4 +496,18 @@ body.dark-theme .transaction-item {
 
 .transaction-item {
     animation: slideIn 0.3s ease-out;
+}
+
+/*petite animation quand on enleve une depense */
+
+.transaction-item.removing {
+    opacity: 0;
+    transform: translateX(30px);
+    max-height: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    overflow: hidden;
+    transition: all 0.4s ease-in-out;
 }
