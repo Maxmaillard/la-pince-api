@@ -47,51 +47,9 @@
             <h3 class="list-title">Historique des transactions</h3>
 
             <div class="transactions-container">
-              <div class="transaction-item">
-                <span class="label">Virement reçu</span>
-                <div class="actions">
-                  <span class="amount pos">150,00€</span>
-                  <div class="icon-group">
-                    <i class="fa-solid fa-pen-to-square edit-icon"></i>
-                    <i class="fa-solid fa-trash delete-icon"></i>
-                  </div>
-                </div>
-              </div>
-
-              <div class="transaction-item">
-                <span class="label">Courses Carrefour</span>
-                <div class="actions">
-                  <span class="amount neg">-45,20€</span>
-                  <div class="icon-group">
-                    <i class="fa-solid fa-pen-to-square edit-icon"></i>
-                    <i class="fa-solid fa-trash delete-icon"></i>
-                  </div>
-                </div>
-              </div>
-
-              <div class="transaction-item">
-                <span class="label">Virement SAS DEVWEB</span>
-                <div class="actions">
-                  <span class="amount pos">1600€</span>
-                  <div class="icon-group">
-                    <i class="fa-solid fa-pen-to-square edit-icon"></i>
-                    <i class="fa-solid fa-trash delete-icon"></i>
-                  </div>
-                </div>
-              </div>
             </div>
-
-            <div class="transaction-item">
-              <span class="label">Casino'clock</span>
-              <div class="actions">
-                <span class="amount neg">-6400€</span>
-                <div class="icon-group">
-                  <i class="fa-solid fa-pen-to-square edit-icon"></i>
-                  <i class="fa-solid fa-trash delete-icon"></i>
-                </div>
-              </div>
-            </div>
-
+            
+            <!-- Bouton ajouter transaction -->
             <button class="add-transaction">
               Ajouter une transaction <i class="fa-solid fa-circle-plus"></i>
             </button>
@@ -100,11 +58,41 @@
                 <canvas id="myChart"></canvas>
             </div>
         </div>
-      </section>
+        <!-- popup ajouter une transaction -->
+        <div id="modal-transaction" class="modal-overlay">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Nouvelle Transaction</h2>
+            <button id="close-modal" class="btn-close">&times;</button>
+            </div>
+            <form id="transaction-form">
+                <div class="form-group">
+                    <label>Nom de la transaction</label>
+                    <input type="text" id="t-name" placeholder="Ex: Courses Carrefour" required>
+                </div>
+            <div class="form-group">
+                <label>Montant (€)</label>
+                <input type="number" id="t-amount" step="0.01" placeholder="Ex: -45.00" required>
+            </div>
+            <div class="form-group">
+                <label>Catégorie</label>
+                <select id="t-category">
+                    <option value="DIVERS">Divers</option>
+                    <option value="LOYER">Loyer</option>
+                    <option value="ALIMENTATION">Alimentation</option>
+                    <option value="LOISIRS">Loisirs</option>
+                    <option value="EPARGNE">Épargne</option>
+                </select>
+            </div>
+            <button type="submit" class="btn-submit">Ajouter</button>
+        </form>
+    </div>
+</div>
+        </section>
 
-      <!-- === page profil === -->
+        <!-- === page profil === -->
 
-      <section id="page-profil" class="content-section hidden">
+        <section id="page-profil" class="content-section hidden">
         
         <div class="profil-card">
 

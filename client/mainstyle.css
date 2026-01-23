@@ -5,6 +5,7 @@
     --text-color: white;
     --neg-color: #e74c3c;
     --pos-color: #27ae60;
+    --modal-bg: linear-gradient(135deg, #5d7e8e, #7ba1b2); /* Ajout pour gestion dynamique */
 }
 
 /* --- Base & Centrage --- */
@@ -119,14 +120,14 @@ nav {
     flex-direction: column;
 }
 
-/* AJOUT : S'assure que chaque page prend toute la place disponible */
+/*S'assure que chaque page prend toute la place disponible */
 .content-section {
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
-/* AJOUT : Classe pour masquer les pages non sélectionnées */
+/*Classe pour masquer les pages non sélectionnées */
 .hidden {
     display: none !important;
 }
@@ -299,7 +300,7 @@ nav {
     margin-bottom: 20px;
     font-size: 1.4rem;
 }
-/*  */
+/* */
 .info-group__label {
     font-size: 0.75rem;
     text-transform: uppercase;
@@ -352,10 +353,11 @@ nav {
 /* DARK MODE */
 
 body.dark-theme {
-    --bg-color:  #000000 ;
-    --glass-bg:  rgba(0, 0, 0, 0.4) ;
-    --glass-border: rgba(255, 255, 255, 0.1) ;
-    --text-color: #e0e0e0 ;
+    --bg-color: #000000;
+    --glass-bg: rgba(0, 0, 0, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-color: #e0e0e0;
+    --modal-bg: linear-gradient(135deg, #0f0f0f, #2c2c2c); /* Ajout dynamique */
 }
 
 body.dark-theme {
@@ -442,16 +444,83 @@ body.dark-theme .transaction-item {
     overflow: visible;
 }
 
+/* POPUP AJOUT TRANSACTION */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: var(--modal-bg); /* c478 */
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    width: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.btn-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+/*petite animation quand on ajoute une depense*/
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.transaction-item {
+    animation: slideIn 0.3s ease-out;
+}
+
+/*petite animation quand on enleve une depense */
+
+.transaction-item.removing {
+    opacity: 0;
+    transform: translateX(30px);
+    max-height: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    overflow: hidden;
+    transition: all 0.4s ease-in-out;
+}
+
 /* ======================
-   Bouton switch (profil)
+    Bouton switch (profil)
    ====================== */
 
-    .checkbox{
-        display: none;
-        
-    }
+.checkbox{
+    display: none;
+}
 
-   .checkbox_label{
+.checkbox_label{
     display: inline-block;
     height: 20px;
     width: 40px;
@@ -465,15 +534,15 @@ body.dark-theme .transaction-item {
 
     cursor: pointer;
     margin-left: 1em;
-   }
+}
 
-   .checkbox_label:after{
+.checkbox_label:after{
     content: "";
 
     height: 15px;
     width: 15px;
 
-    background: white;
+    background: rgb(255, 255, 255);
 
     position: absolute;
 
@@ -483,21 +552,19 @@ body.dark-theme .transaction-item {
     transition: all .3s;
 
     border-radius: 50%;
-   }
+}
 
-   .checkbox:checked + .checkbox_label:after{
+.checkbox:checked + .checkbox_label:after{
     transform: translateX(20px);
-   }
+}
 
-   .checkbox:checked + label{
-    background: green;
-   }
-/* ----------------------------------------------- */
-
-
+.checkbox:checked + label{
+    background: #000000;
+    border: 1px solid #d6d6d6;
+}
 
 /* ==========
-   RESPONSIVE
+    RESPONSIVE
    ========== */
 
 /* --- Bouton Menu (caché sur pc) --- */
