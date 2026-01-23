@@ -116,3 +116,20 @@ const myChart = new Chart(ctx, {
 //         });
 //     }
 });
+
+// Bouton sidebar pour Mobile
+const menuToggle = document.getElementById('menu-toggle');
+const sidebar = document.querySelector('.sidebar');
+
+if (menuToggle) {
+    menuToggle.addEventListener('click', () => {sidebar.classList.toggle('active')});
+} 
+
+// Fermer la sidebar quand on clique sur un menu sur mobile
+document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', () => {
+        if (window.innerWidth <= 1024) {
+            sidebar.classList.remove('active');
+        }
+    });
+});

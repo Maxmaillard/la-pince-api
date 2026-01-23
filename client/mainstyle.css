@@ -346,47 +346,41 @@ nav {
 /* DARK MODE */
 
 body.dark-theme {
-    --bg-color: #000000;
-    --glass-bg: rgba(0, 0, 0, 0.4);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --text-color: #e0e0e0;
+    --bg-color:  #000000 ;
+    --glass-bg:  rgba(0, 0, 0, 0.4) ;
+    --glass-border: rgba(255, 255, 255, 0.1) ;
+    --text-color: #e0e0e0 ;
 }
 
 body.dark-theme {
-    background: linear-gradient(135deg, #0f0f0f, #2c2c2c);
+    background: linear-gradient(135deg, #0f0f0f, #2c2c2c) ;
 }
 
 body.dark-theme .transaction-item {
-    background: rgba(255, 255, 255, 0.05);
-    color: white;
+    background: rgba(255, 255, 255, 0.05) ;
+    color: white ;
 }
 
 /* --- Page informations--- */
 
 #page-informations {
-    /* empeche la page d'être scrollable */
-    height: 100vh;
-    overflow: hidden;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0; 
 }
 /* ---information container--- */
 
-.information-card{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: baseline;
+.information-card {
     flex: 1;
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
-    padding: 30px;
+    height: 100%; 
+    display: flex;
     flex-direction: column;
-
-    /* scroll */
-    overflow-y: auto;  
-    overflow-x: hidden; 
-    }
-
+    overflow-y: auto; 
+    background: var(--glass-bg);
+    padding: 30px;
+    border-radius: 20px;
+}
     /* --- mise en forme --- */
     /* --- aération --- */
 .legal-item {
@@ -440,4 +434,118 @@ body.dark-theme .transaction-item {
     height: 300px;
     margin: auto;
     overflow: visible;
+}
+
+/* ----------------------------------------------- */
+
+
+
+/* ==========
+   RESPONSIVE
+   ========== */
+
+/* --- Bouton Menu (caché sur pc) --- */
+
+.menu-mobile-btn {
+    display: none;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+}
+
+.nav-item{
+    opacity: 1;
+}
+
+/* =================
+   TABLETTE & MOBILE 
+   ================= */
+
+   @media (max-width: 1024px) {
+    body {
+        padding: 10px;
+        align-items: flex-start;
+    }
+
+    .container {
+        flex-direction: column;
+        height: auto;
+        
+    }
+
+    /* Empilement vertical de toutes les cartes */
+    .dashboard-card, .profil-card, .information-card, .content-section {
+        flex-direction: column !important;
+        align-items: center;
+        gap: 25px;
+        height: auto;
+        padding: 20px;
+        width: 90%;
+    }
+
+    /* Configuration Sidebar Mobile */
+
+    .sidebar {
+        position: fixed;
+        left: -325px; 
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        width: 280px;
+        z-index: 1000;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 10px 0 30px rgba(0,0,0,0.3);
+        padding: 20px;
+        justify-content: space-between;
+        
+        /* correctif pour respecter le Dark Mode */
+        background: var(--glass-bg) !important;
+        backdrop-filter: blur(20px);
+    }
+
+    .sidebar.active {
+        left: 0;
+        /* correctif pour la lisibilité sans casser le Dark Mode */
+        background-color: rgba(0, 0, 0, 0.4) !important; 
+    }
+
+    .menu-mobile-btn {
+        display: block; 
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding-top: 70px;
+    }
+
+    .transaction-list, .user-info, .staff-card {
+        width: 90% !important;
+    }
+}
+
+/* =================
+   UNIQUEMENT MOBILE
+   ================= */
+
+@media (max-width: 480px) {
+    .dashboard-card, .profil-card {
+        padding: 15px;
+    }
+    
+    .btn-submit {
+        width: 100%;
+    }
+
+    .chart-section {
+        width: 250px;
+        height: 250px;
+    }
 }
