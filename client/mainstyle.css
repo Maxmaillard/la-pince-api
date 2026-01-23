@@ -330,7 +330,7 @@ nav {
     color: white;
 }
 
-.btn-submit {
+.btn-submit, .btn-delete {
     width: 30%;
     padding: 12px;
     border-radius: 15px;
@@ -342,6 +342,12 @@ nav {
     transition: 0.3s;
 }
 
+.btn-delete{
+    margin-top: 2em;
+    background: #e74c3c;
+    color: #e0e0e0;
+    width: 50%;
+}
 
 /* DARK MODE */
 
