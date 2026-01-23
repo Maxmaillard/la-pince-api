@@ -331,7 +331,7 @@ nav {
     color: white;
 }
 
-.btn-submit {
+.btn-submit, .btn-delete {
     width: 30%;
     padding: 12px;
     border-radius: 15px;
@@ -343,6 +343,12 @@ nav {
     transition: 0.3s;
 }
 
+.btn-delete{
+    margin-top: 2em;
+    background: #e74c3c;
+    color: #e0e0e0;
+    width: 50%;
+}
 
 /* DARK MODE */
 
@@ -355,40 +361,34 @@ body.dark-theme {
 }
 
 body.dark-theme {
-    background: linear-gradient(135deg, #0f0f0f, #2c2c2c);
+    background: linear-gradient(135deg, #0f0f0f, #2c2c2c) ;
 }
 
 body.dark-theme .transaction-item {
-    background: rgba(255, 255, 255, 0.05);
-    color: white;
+    background: rgba(255, 255, 255, 0.05) ;
+    color: white ;
 }
 
 /* --- Page informations--- */
 
 #page-informations {
-    /* empeche la page d'être scrollable */
-    height: 100vh;
-    overflow: hidden;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0; 
 }
 /* ---information container--- */
 
-.information-card{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: baseline;
+.information-card {
     flex: 1;
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
-    padding: 30px;
+    height: 100%; 
+    display: flex;
     flex-direction: column;
-
-    /* scroll */
-    overflow-y: auto;  
-    overflow-x: hidden; 
-    }
-
+    overflow-y: auto; 
+    background: var(--glass-bg);
+    padding: 30px;
+    border-radius: 20px;
+}
     /* --- mise en forme --- */
     /* --- aération --- */
 .legal-item {
