@@ -435,3 +435,54 @@ body.dark-theme .transaction-item {
     margin: auto;
     overflow: visible;
 }
+
+/* ======================
+   Bouton switch (profil)
+   ====================== */
+
+    .checkbox{
+        display: none;
+        
+    }
+
+   .checkbox_label{
+    display: inline-block;
+    height: 20px;
+    width: 40px;
+
+    background: grey;
+    position: relative;
+
+    transition: all .3s;
+
+    border-radius: 60px;
+
+    cursor: pointer;
+    margin-left: 1em;
+   }
+
+   .checkbox_label:after{
+    content: "";
+
+    height: 15px;
+    width: 15px;
+
+    background: white;
+
+    position: absolute;
+
+    top: 2px;
+    left: 2px;
+
+    transition: all .3s;
+
+    border-radius: 50%;
+   }
+
+   .checkbox:checked + .checkbox_label:after{
+    transform: translateX(20px);
+   }
+
+   .checkbox:checked + label{
+    background: green;
+   }
