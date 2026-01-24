@@ -5,12 +5,13 @@ class TransactionController {
 
     // function qui récupère le tableau de bord de l'utilisateur connecté
 getDashboard = async (req, res) => {
-    //On récupère l'ID de l'utilisateur depuis le token
+    // On récupère l'ID de l'utilisateur depuis le token
     const { user_id } = req.user;
 
     try {
         // On récupère toutes les dépenses de cet utilisateur 
         // On inclut la catégorie associée (name + color)
+        
 
         const expenses = await Expense.findAll({
             where: { id_user: user_id },
