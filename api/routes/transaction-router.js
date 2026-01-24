@@ -6,6 +6,8 @@ const router = Router();
 
 // Dashboard
 router.get("/dashboard", authenticate, transactionController.getDashboard);
+// New transaction 
+router.post("/new-transaction", authenticate, transactionController.createTransaction);
 
 
 

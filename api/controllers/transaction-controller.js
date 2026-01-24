@@ -11,7 +11,7 @@ getDashboard = async (req, res) => {
     try {
         // On récupère toutes les dépenses de cet utilisateur 
         // On inclut la catégorie associée (name + color)
-        
+
 
         const expenses = await Expense.findAll({
             where: { id_user: user_id },
@@ -39,10 +39,48 @@ getDashboard = async (req, res) => {
             error: "Erreur lors de la récupération du dashboard"
         });
     }
+}
+// CREATE NEW TRANSACTION
+ createTransaction = async (req, res) => {
+    try {
+        // On récupère l'utilisateur connecté (grâce au middleware authenticate)
+        const { user_id } = req.user;
+
+ const amount = req.body.amount;  // Montant de la transaction
+const date = req.body.date;       // Date de la transaction
+const description = req.body.description;  // Description optionnelle
+const id_category = req.body.id_category;   // Catégorie associée
+
+        // Vérification simple : tous les champs doivent être présents
+        if (!amount || !date || !id_category) {
+            return res.status(StatusCodes.BAD_REQUEST).json({
+                error: "Les champs amount, date et id_category sont obligatoires"
+            });
+        }
+
+        // Création de la transaction
+        const newTransaction = await Expense.create({
+            amount,
+            date,
+            description: description || null, 
+            id_user: user_id,
+            id_category
+        });
+
+        return res.status(StatusCodes.CREATED).json({
+            message: "Transaction créée avec succès",
+            transaction: newTransaction
+        });
+
+    } catch (error) {
+        console.error(error);
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+            error: "Erreur lors de la création de la transaction"
+        });
+    }
 };
 
-    
-    };
+};
 
     
 
