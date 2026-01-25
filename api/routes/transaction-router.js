@@ -8,6 +8,8 @@ const router = Router();
 router.get("/dashboard", authenticate, transactionController.getDashboard);
 // New transaction 
 router.post("/new-transaction", authenticate, transactionController.createTransaction);
+router.get("/transaction/:id", authenticate, transactionController.getTransactionById);
+
 
 
 

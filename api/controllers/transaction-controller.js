@@ -78,7 +78,41 @@ const id_category = req.body.id_category;   // Catégorie associée
             error: "Erreur lors de la création de la transaction"
         });
     }
+}
+//function qui récupere une transaction exact grace a son id
+getTransactionById = async (req, res) => {
+    try {
+        // On cherche dans la base une transaction qui correspond 
+        
+        const id = req.params.id;      // ID de la transaction
+        const user_id = req.user.user_id; // ID de l'utilisateur connecté
+        const transaction = await Expense.findOne({
+            where: {
+                id_expense: id,
+                id_user: user_id
+            },
+            include: {
+                model: Category,
+                as: "category",
+                attributes: ["name", "color"]
+            }
+        });
+// Si aucune transaction n'a été trouvée (id inexistant ou transaction d'un autre utilisateur)
+
+
+        if (!transaction) {
+            return res.status(404).json({ error: "Transaction introuvable" });
+        }
+
+        return res.status(200).json(transaction);
+
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: "Erreur serveur" });
+    }
 };
+
+
 
 };
 
