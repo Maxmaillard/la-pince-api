@@ -121,7 +121,7 @@ class AuthController extends BaseController {
             return res.status(StatusCodes.OK).json(user);
 
         } catch (error) {
- // Si jamais il y a une exception, une erreur inattendue, alors on renvoit une 500
+// Si jamais il y a une exception, une erreur inattendue, alors on renvoit une 500
             console.error(error);
             return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
                 error: "Erreur interne du serveur"

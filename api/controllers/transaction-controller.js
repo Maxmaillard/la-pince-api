@@ -110,7 +110,55 @@ getTransactionById = async (req, res) => {
         console.error(error);
         return res.status(500).json({ error: "Erreur serveur" });
     }
+}
+//function update 
+
+updateTransaction = async (req, res) => {
+    try {
+        // ID de la transaction
+        const  id = req.params.id;
+         // ID de l'utilisateur connecté
+        const user_id = req.user.user_id;    
+//recupere les donner envoyer par le front
+      const amount = req.body.amount;
+      const date = req.body.date;
+      const description = req.body.description;
+      const id_category = req.body.id_category;
+
+
+        // Vérifier si la transaction existe et appartient à l'utilisateur
+        const transaction = await Expense.findOne({
+            where: {
+                id_expense: id,
+                id_user: user_id
+            }
+        });
+
+        if (!transaction) {
+            return res.status(StatusCodes.NOT_FOUND).json({
+                error: "Transaction introuvable"
+            });
+        }
+
+        // Mise à jour des champs (seulement ceux envoyés)
+        if (amount !== undefined) transaction.amount = amount;
+        if (date !== undefined) transaction.date = date;
+        if (description !== undefined) transaction.description = description; 
+        if (id_category !== undefined) transaction.id_category = id_category;
+        await transaction.save();
+
+        return res.status(StatusCodes.OK).json({
+             message: "Transaction mise à jour avec succès", transaction
+             });
+
+    } catch (error) {
+        console.error(error);
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+            error: "Erreur lors de la mise à jour de la transaction"
+        });
+    }
 };
+
 
 
 
