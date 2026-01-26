@@ -67,7 +67,7 @@ async deleteAccount() {
             throw new Error(errorData.error || "Erreur lors de la suppression");
         }
 
-        // CORRECTIF ICI : On vérifie si la réponse a du contenu avant de parser
+        //On vérifie si la réponse a du contenu avant de parser
         if (response.status === 204 || response.headers.get("content-length") === "0") {
             return { success: true };
         }

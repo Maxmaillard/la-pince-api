@@ -1,4 +1,3 @@
-// client/src/lib/components/profile-handler.js
 import { authService } from '../services/auth.js';
 
 export function initProfileHandler() {
@@ -26,5 +25,31 @@ export function initProfileHandler() {
                 alert("Une erreur technique est survenue.");
             }
         });
+    }
+}
+
+export async function loadUserData() {
+    try {
+        const user = await authService.getMe();
+
+        if (user && !user.error) {
+            // Sélection des éléments
+            const lastNameElem = document.getElementById('profile-last-name');
+            const firstNameElem = document.getElementById('profile-first-name');
+            const emailElem = document.getElementById('profile-email');
+            const mainTitle = document.getElementById('main-title');
+
+            // Injection des données
+            if (lastNameElem) lastNameElem.textContent = user.last_name;
+            if (firstNameElem) firstNameElem.textContent = user.first_name;
+            if (emailElem) emailElem.textContent = user.email;
+
+            // Mise à jour du titre du Dashboard (Optionnel)
+            if (mainTitle && user.first_name) {
+                mainTitle.textContent = `BONJOUR ${user.first_name.toUpperCase()}`;
+            }
+        }
+    } catch (err) {
+        console.error("Erreur lors du chargement des données profil:", err);
     }
 }

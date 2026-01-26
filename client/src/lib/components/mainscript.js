@@ -9,18 +9,13 @@
 import { handleNavigation } from './navigation.js';
 import { initTheme } from './theme.js';
 import { checkAccess } from '../utils/guard.js';
-import { initProfileHandler } from './profil-handler.js';
+import { initProfileHandler, loadUserData } from './profil-handler.js';
 
 checkAccess();
 document.addEventListener('DOMContentLoaded', () => {
     /* ============================================================
        1. SÉLECTION DES ÉLÉMENTS DU DOM
        ============================================================ */
-    // const mainTitle = document.getElementById('main-title');
-    // const navButtons = document.querySelectorAll('.nav-item');
-    // const sections = document.querySelectorAll('.content-section');
-    // const darkModeToggle = document.getElementById('dark-mode');
-    
     // Éléments liés aux transactions
     const addBtn = document.querySelector('.add-transaction');
     const modal = document.getElementById('modal-transaction');
@@ -233,5 +228,6 @@ document.addEventListener('DOMContentLoaded', () => {
    /* ============================================================
        9. PARAMETRE PROFIL
        ============================================================ */ 
-       initProfileHandler()
+       initProfileHandler(),
+       loadUserData()
 });
