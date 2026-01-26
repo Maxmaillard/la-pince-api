@@ -39,6 +39,47 @@ export const authService = {
         return response.json();
     },
 
+    // SUPPRESSION COMPTE
+    // client/src/lib/services/auth.js
+
+// client/src/lib/services/auth.js
+
+// client/src/lib/services/auth.js
+
+async deleteAccount() {
+    try {
+        const user = await authService.getMe(); 
+        const userId = user.id_user; 
+
+        if (!userId) throw new Error("ID utilisateur introuvable.");
+
+        const token = localStorage.getItem('token');
+        const response = await fetch(`${API_URL}/users/${userId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(errorData.error || "Erreur lors de la suppression");
+        }
+
+        // CORRECTIF ICI : On vérifie si la réponse a du contenu avant de parser
+        if (response.status === 204 || response.headers.get("content-length") === "0") {
+            return { success: true };
+        }
+
+        return await response.json().catch(() => ({ success: true }));
+
+    } catch (err) {
+        console.error("Erreur dans deleteAccount:", err.message);
+        return { error: err.message };
+    }
+},
+
     // DASHBOARD
     async getDashboard() {
         const token = localStorage.getItem('token');
