@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>La Pince - Dashboard</title>
-  <link rel="stylesheet" href="mainstyle.css">
+  <link rel="stylesheet" href="../src/assets/css/mainstyle.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -16,10 +16,10 @@
     <button id="menu-toggle" class="menu-mobile-btn">
   <i class="fa-solid fa-bars"></i>
 </button>
-    <!--  -->
+    <!-- SIDEBAR -->
     <aside class="sidebar">
       <div class="logo">
-        <img src="../images-utilitaires/LOGO_LAPINCE_BLANC.png" alt="La Pince">
+        <img src="../../images-utilitaires/LOGO_LAPINCE_BLANC.png" alt="La Pince">
         <h2>LA PINCE</h2>
       </div>
       <nav>
@@ -58,7 +58,7 @@
                 <canvas id="myChart"></canvas>
             </div>
         </div>
-        <!-- popup ajouter une transaction -->
+        <!-- MODAL ajouter une transaction -->
         <div id="modal-transaction" class="modal-overlay">
             <div class="modal-content">
                 <div class="modal-header">
@@ -213,7 +213,7 @@
     </main>
   </div>
 
-  <script src="mainscript.js"></script>
+  <script src="../src/lib/components/mainscript.js"></script>
 </body>
 
 </html>
