@@ -9,7 +9,7 @@
 import { handleNavigation } from './navigation.js';
 import { initTheme } from './theme.js';
 import { checkAccess } from '../utils/guard.js';
-import { initProfileHandler, loadUserData } from './profil-handler.js';
+import { initPasswordUpdate, initProfileHandler, loadUserData } from './profil-handler.js';
 
 checkAccess();
 document.addEventListener('DOMContentLoaded', () => {
@@ -228,6 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
    /* ============================================================
        9. PARAMETRE PROFIL
        ============================================================ */ 
-       initProfileHandler(),
-       loadUserData()
+       initProfileHandler();
+       loadUserData();
+       initPasswordUpdate();
 });

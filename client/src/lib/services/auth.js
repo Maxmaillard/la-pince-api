@@ -87,5 +87,34 @@ async deleteAccount() {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         return response.json();
+    },
+    // NEW PASSWORD
+   async updatePassword(newPassword) {
+    try {
+        const user = await authService.getMe();
+        const userId = user.id_user; // On utilise l'id récupéré
+        const token = localStorage.getItem('token');
+
+        // On tape sur la route que l'on vient de créer : /api/users/:id
+        const response = await fetch(`${API_URL}/users/${userId}`, {
+            method: 'PUT',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ password: newPassword })
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(errorData.error || "Échec de la mise à jour");
+        }
+
+        return await response.json();
+    } catch (err) {
+        return { error: err.message };
     }
+}
 };
+
+

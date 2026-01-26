@@ -53,3 +53,43 @@ export async function loadUserData() {
         console.error("Erreur lors du chargement des données profil:", err);
     }
 }
+
+export function initPasswordUpdate() {
+    const passwordForm = document.querySelector('.form-password');
+
+    if (passwordForm) {
+        passwordForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Récupération des champs via name (plus robuste que les classes ici)
+            const formData = new FormData(passwordForm);
+            const newPass = formData.get('new_password');
+            const confirmPass = formData.get('confirm_password');
+
+            // 1. Validation côté client
+            if (newPass !== confirmPass) {
+                alert("Les mots de passe ne correspondent pas !");
+                return;
+            }
+
+            if (newPass.length < 6) {
+                alert("Le mot de passe doit faire au moins 6 caractères.");
+                return;
+            }
+
+            try {
+                const result = await authService.updatePassword(newPass);
+                
+                if (result.error) {
+                    alert("Erreur : " + result.error);
+                } else {
+                    alert("Mot de passe mis à jour avec succès !");
+                    passwordForm.reset(); // On vide le formulaire
+                }
+            } catch (err) {
+                console.error(err);
+                alert("Une erreur technique est survenue.");
+            }
+        });
+    }
+}
