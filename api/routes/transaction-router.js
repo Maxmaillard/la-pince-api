@@ -11,6 +11,8 @@ router.post("/new-transaction", authenticate,transactionController.createTransac
 router.get("/transaction/:id", authenticate,transactionController.getTransactionById);
 // Update transaction 
  router.put("/transaction/:id", authenticate,transactionController.updateTransaction);
+ //supprimer une transaction
+router.delete("/transaction/:id", authenticate, transactionController.deleteTransaction);
 
 
 

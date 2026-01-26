@@ -157,7 +157,42 @@ updateTransaction = async (req, res) => {
             error: "Erreur lors de la mise à jour de la transaction"
         });
     }
+}
+//function pour supprimer une depense
+deleteTransaction = async (req, res) => {
+    try {
+         // ID de la transaction
+        const id = req.params.id;
+        // ID de l'utilisateur connecté
+        const user_id = req.user.user_id;
+
+        // Vérifier si la transaction existe et appartient à l'utilisateur
+        const transaction = await Expense.findOne({
+            where: {
+                id_expense: id,
+                id_user: user_id
+            }
+        });
+
+        if (!transaction) {
+            return res.status(404).json({ error: "Transaction introuvable" });
+        }
+
+        // Suppression
+        await transaction.destroy();
+
+        return res.status(200).json({
+            message: "Transaction supprimée avec succès"
+        });
+
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            error: "Erreur lors de la suppression de la transaction"
+        });
+    }
 };
+
 
 
 
