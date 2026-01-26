@@ -7,9 +7,10 @@ const app = express();
 // Middlewares
 app.use(express.json());
 app.use(cors({
-  origin: "http://localhost:5173" // Autorise l'url localhost:5173 à appeler l'API
-  // origin: "*" permet d'autoriser n'importe quel origine à appeler l'API
-}))
+  origin: ["http://localhost:5173", "http://127.0.0.1:5500", "http://localhost:5500"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
 
 // Routes
 app.use("/api", router);
