@@ -698,3 +698,41 @@ body.dark-theme .transaction-item {
         height: 250px;
     }
 }
+
+/*  =================================
+    ADMIN
+    ================================= */
+
+    .admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    background: var(--card-bg); /* Utilise tes variables Figma */
+    color: var(--text-color);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.admin-table th, .admin-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+}
+
+.admin-table th {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.btn-delete-admin {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-delete-admin:hover {
+    background-color: #cc0000;
+}
