@@ -9,5 +9,7 @@ router.get("/", authenticate, userController.getAll);
  //supprimer un utlisateur 
  router.delete("/:id", authenticate, userController.delete);
 
+// Modifier un utilisateur
+router.put("/:id", authenticate, userController.update);
 
 export default router;

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Inscription – LaPince</title>
-  <link rel="stylesheet" href="/client/src/assets/css/style.css" />
+  <link rel="stylesheet" href="../src/assets/css/style.css" />
 </head>
 
 <body class="page-auth">
@@ -11,35 +11,43 @@
     <section class="card">
       <h2 class="card__title">Créer un compte</h2>
 
-      <form class="form">
-        <input
-          class="form__input"
-          type="text"
-          placeholder="Nom"
-        />
+      <form id="register-form" class="form">
+  <input
+    id="last_name"
+    class="form__input"
+    type="text"
+    placeholder="Nom"
+    required
+  />
 
-        <input
-          class="form__input"
-          type="text"
-          placeholder="Prénom"
-        />
+  <input
+    id="first_name"
+    class="form__input"
+    type="text"
+    placeholder="Prénom"
+    required
+  />
 
-        <input
-          class="form__input"
-          type="email"
-          placeholder="Email"
-        />
+  <input
+    id="email"
+    class="form__input"
+    type="email"
+    placeholder="Email"
+    required
+  />
 
-        <input
-          class="form__input"
-          type="password"
-          placeholder="Mot de passe"
-        />
+  <input
+    id="password"
+    class="form__input"
+    type="password"
+    placeholder="Mot de passe"
+    required
+  />
 
-        <button class="button button--primary">
-          S’inscrire
-        </button>
-      </form>
+  <button type="submit" class="button button--primary">
+    S’inscrire
+  </button>
+</form>
 
       <p class="card__text">
         Déjà un compte ?
@@ -51,3 +59,5 @@
   </main>
 </body>
 </html>
+
+<script type="module" src="../src/lib/components/auth-handler.js"></script>

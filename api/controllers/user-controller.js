@@ -1,4 +1,5 @@
 import { User } from "../models/user-model.js";
+import argon2 from "argon2"
 
 export const userController = {
   async getAll(req, res) {
@@ -38,6 +39,36 @@ export const userController = {
     console.error(error);
     return res.status(500).json({ error: "Erreur serveur" });
   }
-}
+},
 
+  // modification mot de passe
+  
+  async update(req, res) {
+    try {
+      const { id } = req.params;
+      const { password } = req.body;
+
+      if (!password) {
+        return res.status(400).json({ error: "Nouveau mot de passe requis" });
+      }
+
+      // 1. Hachage avec Argon2 
+      const hashedPassword = await argon2.hash(password);
+
+      // 2. Mise à jour Sequelize
+      const [updatedRows] = await User.update(
+        { password: hashedPassword },
+        { where: { id_user: id } }
+      );
+
+      if (updatedRows === 0) {
+        return res.status(404).json({ error: "Utilisateur non trouvé" });
+      }
+
+      res.json({ message: "Mot de passe mis à jour avec succès" });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Erreur lors de la mise à jour" });
+    }
+  }
 };
