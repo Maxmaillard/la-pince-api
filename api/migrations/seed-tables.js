@@ -26,6 +26,8 @@ const catFood = await Category.create({ name: "Nourriture", color: "#FF5733" });
 const catTransport = await Category.create({ name: "Transport", color: "#33C1FF" });
 const catLoisir = await Category.create({ name: "Loisirs", color: "#9D33FF" });
 const catSante = await Category.create({ name: "Santé", color: "#33FF57" });
+const catEpargne = await Category.create({ name: "Epargne", color: "#FFD700" });
+
 
 console.log("🚧 Ajout des dépenses...");
 const expense1 = await Expense.create({

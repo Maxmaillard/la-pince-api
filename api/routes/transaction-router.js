@@ -4,16 +4,19 @@ import transactionController from "../controllers/transaction-controller.js";
 
 const router = Router();
 
-// Dashboard
-router.get("/dashboard", authenticate, transactionController.getDashboard);
-// New transaction 
-router.post("/new-transaction", authenticate,transactionController.createTransaction);
-router.get("/transaction/:id", authenticate,transactionController.getTransactionById);
-// Update transaction 
- router.put("/transaction/:id", authenticate,transactionController.updateTransaction);
- //supprimer une transaction
-router.delete("/transaction/:id", authenticate, transactionController.deleteTransaction);
+// Récupérer toutes les transactions
+router.get("/transactions", authenticate, transactionController.getAllTransactions);
 
+// Créer une transaction
+router.post("/transactions", authenticate, transactionController.createTransaction);
 
+// Récupérer une transaction par ID
+router.get("/transactions/:id", authenticate, transactionController.getTransactionById);
+
+// Modifier une transaction
+router.put("/transactions/:id", authenticate, transactionController.updateTransaction);
+
+// Supprimer une transaction
+router.delete("/transactions/:id", authenticate, transactionController.deleteTransaction);
 
 export default router;
