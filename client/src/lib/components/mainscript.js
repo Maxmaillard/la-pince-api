@@ -5,7 +5,7 @@
 
 
 // import dans l'orde de : fonctionnalitées de navigation de la spa, darkmode, check permettant de rediriger vers la page de connexion si non connecté 
-
+import { transactionService } from '../services/transactions.js';
 import { handleNavigation } from './navigation.js';
 import { initTheme } from './theme.js';
 import { checkAccess } from '../utils/guard.js';
@@ -13,6 +13,16 @@ import { initPasswordUpdate, initProfileHandler, loadUserData } from './profil-h
 
 checkAccess();
 document.addEventListener('DOMContentLoaded', () => {
+    // 🔥 Mapping ID → Nom de catégorie 
+    const CATEGORY_MAP = {
+        1: "DIVERS",
+        2: "LOYER", 
+        3: "ALIMENTATION", 
+        4: "LOISIRS",
+        5: "EPARGNE" 
+        };
+    
+
     /* ============================================================
        1. SÉLECTION DES ÉLÉMENTS DU DOM
        ============================================================ */
@@ -62,6 +72,39 @@ document.addEventListener('DOMContentLoaded', () => {
             plugins: { legend: { display: false } } // Légende masquée pour le style
         }
     });
+    // 🔥 CHARGEMENT DES TRANSACTIONS AU DÉMARRAGE
+async function loadTransactions() {
+    const data = await transactionService.getAll();
+
+    data.forEach(exp => {
+        const typeClass = exp.amount >= 0 ? 'pos' : 'neg';
+        const formattedAmount = exp.amount.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' });
+
+        const row = document.createElement('div');
+        row.classList.add('transaction-item');
+        row.dataset.id = exp.id_expense;
+
+        row.innerHTML = `
+            <span class="label">${exp.description}</span>
+            <div class="actions">
+                <span class="amount ${typeClass}"
+                    data-val="${Math.abs(exp.amount)}"
+                    data-cat="${exp.id_category}">
+                    ${formattedAmount}
+                </span>
+                <div class="icon-group">
+                    <i class="fa-solid fa-pen-to-square edit-icon"></i>
+                    <i class="fa-solid fa-trash delete-icon"></i>
+                </div>
+            </div>
+        `;
+
+        transactionsContainer.appendChild(row);
+    });
+}
+
+loadTransactions();
+
 
     /**
      * Met à jour les données du graphique dynamiquement
@@ -103,62 +146,96 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ============================================================
        6. LOGIQUE DE SOUMISSION DU FORMULAIRE
        ============================================================ */
-    transactionForm.addEventListener('submit', (e) => {
+    transactionForm.addEventListener('submit', async (e) => {
         e.preventDefault(); // Empêche le rechargement de la page
 
         const name = document.getElementById('t-name').value;
         const amount = parseFloat(document.getElementById('t-amount').value);
         const category = document.getElementById('t-category').value;
+        const date = document.getElementById('t-date').value;
+
 
         const typeClass = amount >= 0 ? 'pos' : 'neg';
         const formattedAmount = amount.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' });
+// A. CAS DE LA MODIFICATION
+if (editingRow) {
+    const amountSpan = editingRow.querySelector('.amount');
+    const oldVal = parseFloat(amountSpan.dataset.val);
+    const oldCat = amountSpan.dataset.cat;
+    const wasNegative = amountSpan.classList.contains('neg');
+    const sign = wasNegative ? -1 : 1;
 
-        // A. CAS DE LA MODIFICATION
-        if (editingRow) {
-            const amountSpan = editingRow.querySelector('.amount');
-            const oldVal = parseFloat(amountSpan.dataset.val);
-            const oldCat = amountSpan.dataset.cat;
-            const wasNegative = amountSpan.classList.contains('neg');
-            const sign = wasNegative ? -1 : 1;
+    // Retirer l'ancienne valeur du graphique
+    updateChartData(oldCat, -oldVal, sign);
 
-            // Retirer l'ancienne valeur du graphique (si c'était une dépense)
-            updateChartData(oldCat, -oldVal, sign);
+    // Mise à jour DOM
+    editingRow.querySelector('.label').innerText = name;
+    amountSpan.innerText = formattedAmount;
+    amountSpan.className = `amount ${typeClass}`;
+    amountSpan.dataset.val = Math.abs(amount);
+    amountSpan.dataset.cat = category.toUpperCase();
 
-            // Mise à jour visuelle du texte et des attributs data
-            editingRow.querySelector('.label').innerText = name;
-            amountSpan.innerText = formattedAmount;
-            amountSpan.className = `amount ${typeClass}`;
-            amountSpan.dataset.val = Math.abs(amount);
-            amountSpan.dataset.cat = category.toUpperCase();
+    // Ajouter la nouvelle valeur au graphique
+    updateChartData(category, Math.abs(amount), amount);
 
-            // Ajouter la nouvelle valeur au graphique (si c'est une dépense)
-            updateChartData(category, Math.abs(amount), amount);
+} else {
 
-        } else {
-            // B. CAS DE L'AJOUT SIMPLE
-            const newTransaction = document.createElement('div');
-            newTransaction.classList.add('transaction-item');
-            
-            newTransaction.innerHTML = `
-                <span class="label">${name}</span> 
-                <div class="actions">
-                    <span class="amount ${typeClass}" 
-                        data-val="${Math.abs(amount)}" 
-                        data-cat="${category.toUpperCase()}">${formattedAmount}</span>
-                    <div class="icon-group">
-                        <i class="fa-solid fa-pen-to-square edit-icon"></i>
-                        <i class="fa-solid fa-trash delete-icon"></i>
-                    </div>
-                </div>
-            `;
+    // B. CAS DE L'AJOUT AVEC API
+ const created = await transactionService.create({
+    description: name,
+    amount: amount,
+    date: date,              
+    id_category: parseInt(category)
+   
+});
+console.log("Réponse API :", created);
 
-            transactionsContainer.prepend(newTransaction); // Ajoute en haut de liste
-            updateChartData(category, Math.abs(amount), amount);
-        }
+    if (created.error) {
+        alert("Erreur : " + created.error);
+        return;
+    }
 
-        modal.classList.remove('active');
-        transactionForm.reset();
-    });
+    // Ajout DOM
+    const newTransaction = document.createElement('div');
+    newTransaction.classList.add('transaction-item');
+   newTransaction.dataset.id = created.transaction.id_expense;
+
+
+
+    newTransaction.innerHTML = `
+    <span class="label">${created.transaction.description}</span> 
+    <div class="actions">
+        <span class="amount ${typeClass}" 
+            data-val="${Math.abs(created.transaction.amount)}"
+            data-cat="${created.transaction.id_category}">
+            ${created.transaction.amount.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
+        </span>
+        <div class="icon-group">
+            <i class="fa-solid fa-pen-to-square edit-icon"></i>
+            <i class="fa-solid fa-trash delete-icon"></i>
+        </div>
+    </div>
+`;
+
+
+    transactionsContainer.prepend(newTransaction);
+
+  updateChartData(
+    CATEGORY_MAP[created.transaction.id_category],
+    Math.abs(created.transaction.amount),
+    created.transaction.amount
+);
+
+
+
+} 
+
+
+// Fermeture modale + reset
+modal.classList.remove('active');
+transactionForm.reset();
+});
+
 
     /* ============================================================
        7. ÉCOUTEUR DÉLÉGUÉ (CLICS SUR LES LIGNES DE TRANSACTION)
@@ -232,3 +309,4 @@ document.addEventListener('DOMContentLoaded', () => {
        loadUserData();
        initPasswordUpdate();
 });
+
