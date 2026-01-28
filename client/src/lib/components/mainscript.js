@@ -72,13 +72,41 @@ document.addEventListener('DOMContentLoaded', () => {
             plugins: { legend: { display: false } } // Légende masquée pour le style
         }
     });
-    // 🔥 CHARGEMENT DES TRANSACTIONS AU DÉMARRAGE
+
+
+    /**
+     * Met à jour les données du graphique dynamiquement
+     * @param {string} category - La catégorie concernée
+     * @param {number} value - La valeur absolue à ajouter/retirer
+     * @param {number} originalAmount - Le montant réel (pour vérifier le signe)
+     */
+    function updateChartData(category, value, originalAmount) {
+        // Le graphique ne traite que les dépenses (montants négatifs)
+        if (originalAmount < 0) {
+            const catIndex = myChart.data.labels.indexOf(category.toUpperCase());
+            if (catIndex !== -1) {
+                myChart.data.datasets[0].data[catIndex] += value;
+                // Sécurité pour ne pas avoir de données négatives sur le donut
+                if (myChart.data.datasets[0].data[catIndex] < 0) myChart.data.datasets[0].data[catIndex] = 0;
+                myChart.update(); // Rafraîchit l'affichage du graphique
+            }
+        }
+    }
+    /* ============================================================
+   4.1 CHARGEMENT DES TRANSACTIONS
+   ============================================================ */
 async function loadTransactions() {
     const data = await transactionService.getAll();
 
+    const transactionsContainer = document.querySelector('.transactions-container');
+    transactionsContainer.innerHTML = ""; // reset
+
     data.forEach(exp => {
         const typeClass = exp.amount >= 0 ? 'pos' : 'neg';
-        const formattedAmount = exp.amount.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' });
+        const formattedAmount = exp.amount.toLocaleString('fr-FR', { 
+            style: 'currency', 
+            currency: 'EUR' 
+        });
 
         const row = document.createElement('div');
         row.classList.add('transaction-item');
@@ -100,30 +128,16 @@ async function loadTransactions() {
         `;
 
         transactionsContainer.appendChild(row);
+
+        // Mise à jour du graphique
+        updateChartData(
+            CATEGORY_MAP[exp.id_category],
+            Math.abs(exp.amount),
+            exp.amount
+        );
     });
 }
 
-loadTransactions();
-
-
-    /**
-     * Met à jour les données du graphique dynamiquement
-     * @param {string} category - La catégorie concernée
-     * @param {number} value - La valeur absolue à ajouter/retirer
-     * @param {number} originalAmount - Le montant réel (pour vérifier le signe)
-     */
-    function updateChartData(category, value, originalAmount) {
-        // Le graphique ne traite que les dépenses (montants négatifs)
-        if (originalAmount < 0) {
-            const catIndex = myChart.data.labels.indexOf(category.toUpperCase());
-            if (catIndex !== -1) {
-                myChart.data.datasets[0].data[catIndex] += value;
-                // Sécurité pour ne pas avoir de données négatives sur le donut
-                if (myChart.data.datasets[0].data[catIndex] < 0) myChart.data.datasets[0].data[catIndex] = 0;
-                myChart.update(); // Rafraîchit l'affichage du graphique
-            }
-        }
-    }
 
     /* ============================================================
        5. GESTION DE LA MODALE (AJOUT / MODIFICATION)
@@ -198,8 +212,7 @@ console.log("Réponse API :", created);
     // Ajout DOM
     const newTransaction = document.createElement('div');
     newTransaction.classList.add('transaction-item');
-   newTransaction.dataset.id = created.transaction.id_expense;
-
+   newTransaction.dataset.id = created.transaction.id_transaction;
 
 
     newTransaction.innerHTML = `
@@ -229,7 +242,6 @@ console.log("Réponse API :", created);
 
 
 } 
-
 
 // Fermeture modale + reset
 modal.classList.remove('active');
@@ -308,5 +320,6 @@ transactionForm.reset();
        initProfileHandler();
        loadUserData();
        initPasswordUpdate();
+       loadTransactions();
 });
 
