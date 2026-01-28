@@ -736,3 +736,24 @@ body.dark-theme .transaction-item {
 .btn-delete-admin:hover {
     background-color: #cc0000;
 }
+
+/* bouton admin sidebar */
+.admin-link {
+    width: 100%;
+    background: rgba(255, 193, 7, 0.1) !important;
+    color: #ffc107 !important;
+    border: none;
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.admin-link:hover {
+    background: #ffc107 !important;
+    color: #000 !important;
+}

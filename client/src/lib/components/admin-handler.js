@@ -9,7 +9,7 @@ async function loadUsers() {
             headers: { 'Authorization': `Bearer ${token}` }
         });
 
-        if (!response.ok) throw new Error("Accès refusé ou erreur serveur");
+        if (!response.ok) throw new Error("Accès refusé");
 
         const users = await response.json();
         
@@ -18,11 +18,15 @@ async function loadUsers() {
                 <td>${user.id_user}</td>
                 <td>${user.last_name || ''} ${user.first_name || ''}</td>
                 <td>${user.email}</td>
-                <td><strong>${user.role}</strong></td>
+                <td id="role-badge-${user.id_user}"><strong>${user.role}</strong></td>
                 <td>
+                    <button class="btn-role" onclick="updateRole(${user.id_user}, '${user.role}')">
+                        Passer en ${user.role === 'admin' ? 'User' : 'Admin'}
+                    </button>
+
                     ${user.role !== 'admin' ? 
                         `<button class="btn-delete-admin" onclick="deleteUser(${user.id_user})">Supprimer</button>` 
-                        : '---'}
+                        : '<span style="color:gray">Protégé</span>'}
                 </td>
             </tr>
         `).join('');
@@ -33,7 +37,33 @@ async function loadUsers() {
     }
 }
 
-// On attache la fonction au window pour qu'elle soit accessible depuis le HTML
+// FONCTION POUR CHANGER LE ROLE
+window.updateRole = async (id, currentRole) => {
+    const newRole = currentRole === 'admin' ? 'user' : 'admin';
+    if (!confirm(`Changer le rôle vers ${newRole} ?`)) return;
+
+    const token = localStorage.getItem('token');
+    try {
+        const response = await fetch(`${API_URL}/users/${id}/role`, {
+            method: 'PATCH',
+            headers: { 
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ role: newRole })
+        });
+
+        if (response.ok) {
+            alert("Rôle mis à jour !");
+            loadUsers(); // On recharge pour rafraîchir les badges et boutons
+        } else {
+            alert("Erreur lors de la modification du rôle");
+        }
+    } catch (error) {
+        console.error(error);
+    }
+};
+
 window.deleteUser = async (id) => {
     if (!confirm("Es-tu sûr de vouloir supprimer cet utilisateur ?")) return;
 
@@ -55,5 +85,4 @@ window.deleteUser = async (id) => {
     }
 };
 
-// Initialisation
 document.addEventListener('DOMContentLoaded', loadUsers);
