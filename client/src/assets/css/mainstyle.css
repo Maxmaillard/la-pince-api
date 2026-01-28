@@ -757,3 +757,20 @@ body.dark-theme .transaction-item {
     background: #ffc107 !important;
     color: #000 !important;
 }
+
+
+/*  =================================
+    IA MISTRAL
+    ================================= */
+   #ai-question-input, #btn-send-ai{
+    border-radius: 5px;
+    padding: 1em;
+   }
+
+   #ai-question-input{
+    padding-right: 10 px;
+   }
+
+   #btn-send-ai{
+    background-color: #E74C3C;
+   }

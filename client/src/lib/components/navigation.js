@@ -29,7 +29,7 @@ export function handleNavigation() {
             const sectionMap = {
                 "Dashboard": "page-dashboard",
                 "Profil": "page-profil",
-                "groupes": "page-groupes",
+                "Conseils": "page-groupes",
                 "Informations": "page-informations"
             };
 

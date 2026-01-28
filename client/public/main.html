@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../src/assets/css/mainstyle.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 
 <body>
@@ -25,7 +26,7 @@
       <nav>
         <button class="nav-item"><i class="fa-regular fa-circle-user"></i> Mon Profil</button>
         <button class="nav-item active"><i class="fa-solid fa-chart-column"></i>Mon Dashboard</button>
-        <!-- <button class="nav-item"><i class="fa-solid fa-building-columns"></i>Mes groupes</button> -->
+        <button class="nav-item"><i class="fa-solid fa-building-columns"></i>Conseils</button>
         <button class="nav-item"><i class="fa-solid fa-circle-info"></i>Informations</button>
       </nav>
       <div class="sidebar-footer">
@@ -148,11 +149,16 @@
         
       </section>
       
-      <!-- === page groupes === -->
+      <!-- === page conseils === -->
       <section id="page-groupes" class="content-section hidden">
         <div class="dashboard-card">
-          <h2><i class="fa-solid fa-building-columns"></i> Gestion des Groupes</h2>
-          <p>Retrouvez ici vos comptes partagés avec vos amis ou votre famille.</p>
+          <!-- <h2><i class="fa-solid fa-building-columns"></i> Conseils</h2> -->
+          <div class="chat-container">
+    <div id="chat-window"></div> <form id="ai-chat-form">
+        <input type="text" id="ai-question-input" placeholder="Posez une question financière...">
+        <button type="submit" id="btn-send-ai">Envoyer</button>
+    </form>
+</div>
         </div>
       </section>
 

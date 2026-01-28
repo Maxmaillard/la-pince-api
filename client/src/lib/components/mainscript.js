@@ -10,6 +10,7 @@ import { handleNavigation } from './navigation.js';
 import { initTheme } from './theme.js';
 import { checkAccess } from '../utils/guard.js';
 import { initPasswordUpdate, initProfileHandler, loadUserData } from './profil-handler.js';
+import { handleAIChat } from './modals/mistral.js';
 
 checkAccess();
 document.addEventListener('DOMContentLoaded', () => {
@@ -225,10 +226,36 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+   /* ... (tout le début reste identique jusqu'à la section 9) ... */
+
    /* ============================================================
        9. PARAMETRE PROFIL
        ============================================================ */ 
        initProfileHandler();
        loadUserData();
        initPasswordUpdate();
+
+    /* ============================================================
+       10. GESTION DU CHAT AI (MISTRAL)
+       ============================================================ */
+    const aiForm = document.getElementById('ai-chat-form'); 
+    const aiInput = document.getElementById('ai-question-input'); 
+
+    // Vérification de sécurité pour éviter les erreurs console si on n'est pas sur la page conseils
+    if (aiForm) {
+        aiForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            handleAIChat(); 
+        });
+    }
+    
+    if (aiInput) {
+        aiInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                handleAIChat();
+            }
+        });
+    }
+
 });
