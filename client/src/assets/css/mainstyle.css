@@ -698,3 +698,79 @@ body.dark-theme .transaction-item {
         height: 250px;
     }
 }
+
+/*  =================================
+    ADMIN
+    ================================= */
+
+    .admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    background: var(--card-bg); /* Utilise tes variables Figma */
+    color: var(--text-color);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.admin-table th, .admin-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+}
+
+.admin-table th {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.btn-delete-admin {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-delete-admin:hover {
+    background-color: #cc0000;
+}
+
+/* bouton admin sidebar */
+.admin-link {
+    width: 100%;
+    background: rgba(255, 193, 7, 0.1) !important;
+    color: #ffc107 !important;
+    border: none;
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.admin-link:hover {
+    background: #ffc107 !important;
+    color: #000 !important;
+}
+
+
+/*  =================================
+    IA MISTRAL
+    ================================= */
+   #ai-question-input, #btn-send-ai{
+    border-radius: 5px;
+    padding: 1em;
+   }
+
+   #ai-question-input{
+    padding-right: 10 px;
+   }
+
+   #btn-send-ai{
+    background-color: #E74C3C;
+   }

@@ -1,5 +1,4 @@
 import argon2 from "argon2";
-import bcrypt from "bcrypt";
 import { StatusCodes } from "http-status-codes";
 import jwt from "jsonwebtoken";
 import { User } from "../models/user-model.js";
@@ -80,7 +79,10 @@ class AuthController extends BaseController {
             // Si le mot de passe en clair et le mot de passe hashé matchent grâce à la méthode verify d'argon2
             // Je crée un json web token, qui me permettra de stocker l'utilisateur connecté dans une chaine de caractère chiffré
             const token = jwt.sign(
-                { user_id: user.id_user },
+                { 
+                    user_id: user.id_user,
+                    role: user.role 
+                },
                 process.env.JWT_SECRET,
                 { expiresIn: "24h" }
             );
@@ -107,7 +109,8 @@ class AuthController extends BaseController {
 
             // Grâce à son ID, on récupère l'utilisateur complet
             const user = await this.model.findByPk(user_id, {
-                attributes: ["id_user", "first_name", "last_name", "email"],
+                // On rajoute "role" pour que le front sache qui est admin
+                attributes: ["id_user", "first_name", "last_name", "email", "role"],
                
             });
 // Si on ne trouve pas de user associé à l'id

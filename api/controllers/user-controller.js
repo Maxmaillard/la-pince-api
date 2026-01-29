@@ -70,5 +70,23 @@ export const userController = {
       console.error(error);
       res.status(500).json({ error: "Erreur lors de la mise à jour" });
     }
+  },
+  
+async updateRole(req, res) {
+    try {
+      const { id } = req.params;
+      const { role } = req.body; // 'admin' ou 'user'
+
+      const user = await User.findByPk(id);
+      if (!user) {
+          return res.status(404).json({ error: "Utilisateur non trouvé" });
+      }
+
+      await user.update({ role });
+      res.json({ message: `Rôle mis à jour : ${role}` });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Erreur lors de la mise à jour du rôle" });
+    }
   }
 };
