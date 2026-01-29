@@ -1,17 +1,27 @@
 import { Sequelize } from "sequelize";
 import "dotenv/config";
 
-export const sequelize = new Sequelize(process.env.DB_CONNECT, {
+// On utilise une constante pour plus de clarté
+const dbUrl = process.env.DB_CONNECT;
+
+export const sequelize = new Sequelize(dbUrl, {
   dialect: "postgres",
-  logging: console.log
+  // SSL est OBLIGATOIRE pour Supabase hors local
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false
+    }
+  },
+  logging: false // On désactive pour pas polluer les logs Render (optionnel)
 });
 
 async function connectDB() {
   try {
     await sequelize.authenticate();
-    console.log('Connection has been established successfully.');
+    console.log('✅ Connection has been established successfully.');
   } catch (error) {
-    console.error('Unable to connect to the database:', error);
+    console.error('❌ Unable to connect to the database:', error);
   }
 }
 
