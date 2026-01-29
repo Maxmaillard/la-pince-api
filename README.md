@@ -2,7 +2,51 @@
 
 LaPince est une Web-application de gestion de finances personnelles. ( comme Revolut, Emma-app,  bunq,  bankin’, N26, Linxo, Wise ) qui servira à suivre en temps réel nos dépenses, à planifier nos futures dépenses et à mettre des limites à celles-ci, la possibilité d’ajouter des gens à un groupe de gestion de finance.
 
-## La cible de l'appli
+## INSTALLATION DU PROJET  
+
+### Cloner le dépôt  
+
+- git clone git@github.com:O-clock-Falun/apo-LaPince.git
+- cd la-pince
+
+### Installer les dépendances du backend  
+
+- cd api
+- npm i
+
+### Installer les dépendances du frontend  
+
+- cd ../client
+- npm i
+  
+### Configuration des variables d'environnement  
+
+Créez un fichier .env dans le dossier api avec les clés suivantes :
+  
+- PORT=3000
+- MISTRAL_API_KEY=votre_cle_mistral
+- JWT_SECRET=votre_secret_jwt
+- DATABASE_URL=postgres://user:password@localhost:5432/la_pince
+  
+### Initialisation de la base de données  
+
+Exécutez les scripts de migration dans l'ordre pour préparer votre environnement :
+
+- npm run create:tables # Création des tables PostgreSQL
+- npm run seed:tables   # Injection des données de test
+- npm run seed:admin    # Création du compte administrateur
+
+### Lancement  
+
+Si vous n'y êtes pas, rendez vous dans le dossier api  
+
+- cd ../api
+  
+Puis lancez le serveur :  
+
+- npm run dev
+
+## La cible de l'appli  
 
 - Jeunes Adultes.
 - Famille.
