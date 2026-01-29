@@ -13,7 +13,6 @@ Expense.init({
   date: DataTypes.DATEONLY,
   description: DataTypes.TEXT,
   id_user: DataTypes.INTEGER,
-  id_category: DataTypes.INTEGER
 }, {
   sequelize,
   tableName: "expense",
