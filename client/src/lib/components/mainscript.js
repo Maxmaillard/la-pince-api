@@ -13,7 +13,7 @@ import { initPasswordUpdate, initProfileHandler, loadUserData } from './profil-h
 
 checkAccess();
 document.addEventListener('DOMContentLoaded', () => {
-    // 🔥 Mapping ID → Nom de catégorie 
+    //  Mapping ID → Nom de catégorie 
     const CATEGORY_MAP = {
         1: "DIVERS",
         2: "LOYER", 
@@ -97,6 +97,11 @@ document.addEventListener('DOMContentLoaded', () => {
    ============================================================ */
 async function loadTransactions() {
     const data = await transactionService.getAll();
+
+    // Convertir les montants en nombres
+     data.forEach(exp => {
+         exp.amount = Number(exp.amount); 
+        });
 
     const transactionsContainer = document.querySelector('.transactions-container');
     transactionsContainer.innerHTML = ""; // reset
@@ -253,7 +258,8 @@ console.log("Réponse API :", created);
     Math.abs(created.transaction.amount),
     created.transaction.amount
 );
-
+//  Mettre à jour le total après ajout 
+updateTotalExpenses(await transactionService.getAll());
 
 
 } 
@@ -302,8 +308,10 @@ transactionForm.reset();
 
             // Animation de sortie avant suppression réelle du DOM
             row.classList.add('removing');
-            setTimeout(() => {
+            setTimeout( async () => {
                 row.remove();
+         //  Mettre à jour le total après suppression 
+                updateTotalExpenses(await transactionService.getAll());
             }, 400); // Délai correspondant à la transition CSS
         }
     });
