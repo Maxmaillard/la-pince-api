@@ -1,3 +1,4 @@
+// client/src/lib/models/user-model.js
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "./sequelize-client.js";
 
@@ -11,14 +12,21 @@ User.init({
   },
   email: {
     type: DataTypes.TEXT,
-    allowNull: false
+    allowNull: false,
+    unique: true 
   },
   password: {
     type: DataTypes.TEXT,
     allowNull: false
   },
   first_name: DataTypes.TEXT,
-  last_name: DataTypes.TEXT
+  last_name: DataTypes.TEXT,
+  
+  role: { 
+    type: DataTypes.TEXT,
+    allowNull: false,
+    defaultValue: "user" 
+  }
 }, {
   sequelize,
   tableName: "users",

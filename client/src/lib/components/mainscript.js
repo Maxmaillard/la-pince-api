@@ -10,6 +10,7 @@ import { handleNavigation } from './navigation.js';
 import { initTheme } from './theme.js';
 import { checkAccess } from '../utils/guard.js';
 import { initPasswordUpdate, initProfileHandler, loadUserData } from './profil-handler.js';
+import { handleAIChat } from './modals/mistral.js';
 
 checkAccess();
 document.addEventListener('DOMContentLoaded', () => {
@@ -336,6 +337,8 @@ transactionForm.reset();
             }
         });
     });
+
+   /* ... (tout le début reste identique jusqu'à la section 9) ... */
 
    /* ============================================================
        9. PARAMETRE PROFIL

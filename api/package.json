@@ -1,6 +1,7 @@
 {
   "type": "module",
   "dependencies": {
+    "@mistralai/mistralai": "^1.13.0",
     "argon2": "^0.44.0",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
@@ -19,6 +20,7 @@
   "scripts": {
     "dev": "nodemon app.js",
     "create:tables": "node migrations/create-tables.js",
-    "seed:tables": "node migrations/seed-tables.js"
+    "seed:tables": "node migrations/seed-tables.js",
+    "seed:admin": "node migrations/seed-admin.js"
   }
 }
