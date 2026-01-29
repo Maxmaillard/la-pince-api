@@ -1,27 +1,26 @@
 import { Sequelize } from "sequelize";
 import "dotenv/config";
 
-// On utilise une constante pour plus de clarté
-const dbUrl = process.env.DB_CONNECT;
+// On force SSL pour la prod (Render)
+const isProduction = process.env.NODE_ENV === 'production' || !!process.env.RENDER;
 
-export const sequelize = new Sequelize(dbUrl, {
+export const sequelize = new Sequelize(process.env.DB_CONNECT, {
   dialect: "postgres",
-  // SSL est OBLIGATOIRE pour Supabase hors local
-  dialectOptions: {
+  dialectOptions: isProduction ? {
     ssl: {
       require: true,
       rejectUnauthorized: false
     }
-  },
-  logging: false // On désactive pour pas polluer les logs Render (optionnel)
+  } : {},
+  logging: false
 });
 
 async function connectDB() {
   try {
     await sequelize.authenticate();
-    console.log('✅ Connection has been established successfully.');
+    console.log('✅ DATABASE CONNECTED SUCCESSFULLY');
   } catch (error) {
-    console.error('❌ Unable to connect to the database:', error);
+    console.error('❌ DATABASE CONNECTION ERROR:', error.message);
   }
 }
 
