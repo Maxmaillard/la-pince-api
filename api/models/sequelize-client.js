@@ -1,29 +1,26 @@
 import { Sequelize } from "sequelize";
-import "dotenv/config";
-
-// On force SSL pour la prod (Render)
-const isProduction = process.env.NODE_ENV === 'production' || !!process.env.RENDER;
 
 export const sequelize = new Sequelize(process.env.DB_CONNECT, {
   dialect: "postgres",
-  dialectOptions: isProduction ? {
+  dialectOptions: {
     ssl: {
       require: true,
       rejectUnauthorized: false
-    }
-  } : {},
+    },
+    // CRITIQUE : Désactive le cache de requêtes pour le pooler
+    prepare: false 
+  },
   logging: false
 });
 
-async function connectDB() {
+// Test rapide
+(async () => {
   try {
     await sequelize.authenticate();
-    console.log('✅ DATABASE CONNECTED SUCCESSFULLY');
-  } catch (error) {
-    console.error('❌ DATABASE CONNECTION ERROR:', error.message);
+    console.log('✅ VICTOIRE : Connexion établie via le Pooler IPv4');
+  } catch (e) {
+    console.error('❌ ECHEC :', e.message);
   }
-}
-
-connectDB();
+})();
 
 export default sequelize;
