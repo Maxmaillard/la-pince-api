@@ -101,12 +101,15 @@ async function loadTransactions() {
     const transactionsContainer = document.querySelector('.transactions-container');
     transactionsContainer.innerHTML = ""; // reset
 
+    
+
     data.forEach(exp => {
         const typeClass = exp.amount >= 0 ? 'pos' : 'neg';
         const formattedAmount = exp.amount.toLocaleString('fr-FR', { 
             style: 'currency', 
             currency: 'EUR' 
         });
+        
 
         const row = document.createElement('div');
         row.classList.add('transaction-item');
@@ -136,6 +139,18 @@ async function loadTransactions() {
             exp.amount
         );
     });
+    updateTotalExpenses(data);
+}
+function updateTotalExpenses(data) {
+    const total = data
+        .filter(t => t.amount < 0)
+        .reduce((sum, t) => sum + t.amount, 0);
+
+    document.querySelector('.total-expenses').innerText =
+        Math.abs(total).toLocaleString('fr-FR', {
+            style: 'currency',
+            currency: 'EUR'
+        });
 }
 
 
