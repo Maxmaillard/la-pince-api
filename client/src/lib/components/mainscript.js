@@ -3,16 +3,19 @@
  * Gère la navigation, le Dark Mode, les transactions et le graphique dynamique.
  */
 
+
+// import dans l'orde de : fonctionnalitées de navigation de la spa, darkmode, check permettant de rediriger vers la page de connexion si non connecté 
+
+import { handleNavigation } from './navigation.js';
+import { initTheme } from './theme.js';
+import { checkAccess } from '../utils/guard.js';
+import { initPasswordUpdate, initProfileHandler, loadUserData } from './profil-handler.js';
+
+checkAccess();
 document.addEventListener('DOMContentLoaded', () => {
-    
     /* ============================================================
        1. SÉLECTION DES ÉLÉMENTS DU DOM
        ============================================================ */
-    const mainTitle = document.getElementById('main-title');
-    const navButtons = document.querySelectorAll('.nav-item');
-    const sections = document.querySelectorAll('.content-section');
-    const darkModeToggle = document.getElementById('dark-mode');
-    
     // Éléments liés aux transactions
     const addBtn = document.querySelector('.add-transaction');
     const modal = document.getElementById('modal-transaction');
@@ -28,48 +31,14 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ============================================================
        2. SYSTÈME DE NAVIGATION (SPA Style)
        ============================================================ */
-    navButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const text = button.innerText.trim();
-            
-            // Mise à jour du titre de la barre supérieure
-            mainTitle.textContent = text.toUpperCase();
-            
-            // Gestion visuelle des boutons (classe active)
-            navButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            
-            // Masquage de toutes les sections avant d'afficher la bonne
-            sections.forEach(sec => sec.classList.add('hidden'));
 
-            // Routage interne simple
-            if (text.includes("Dashboard")) document.getElementById('page-dashboard').classList.remove('hidden');
-            else if (text.includes("Profil")) document.getElementById('page-profil').classList.remove('hidden');
-            else if (text.includes("groupes")) document.getElementById('page-groupes').classList.remove('hidden');
-            else if (text.includes("Informations")) document.getElementById('page-informations').classList.remove('hidden');
-        });
-    });
+        handleNavigation()
 
     /* ============================================================
        3. GESTION DU THÈME (DARK MODE) & LOCALSTORAGE
        ============================================================ */
-    // Vérification de la préférence enregistrée au chargement
-    if (localStorage.getItem('theme') === 'dark') {
-        document.body.classList.add('dark-theme');
-        if(darkModeToggle) darkModeToggle.checked = true;
-    }
-
-    if (darkModeToggle) {
-        darkModeToggle.addEventListener('change', () => {
-            if (darkModeToggle.checked) {
-                document.body.classList.add('dark-theme');
-                localStorage.setItem('theme', 'dark'); // Sauvegarde du choix
-            } else {
-                document.body.classList.remove('dark-theme');
-                localStorage.setItem('theme', 'light');
-            }
-        });
-    }
+   
+        initTheme()
 
     /* ============================================================
        4. CONFIGURATION DU GRAPHIQUE (CHART.JS)
@@ -255,4 +224,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+   /* ============================================================
+       9. PARAMETRE PROFIL
+       ============================================================ */ 
+       initProfileHandler();
+       loadUserData();
+       initPasswordUpdate();
 });
