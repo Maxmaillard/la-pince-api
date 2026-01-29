@@ -2,7 +2,7 @@ import pg from "pg";
 import "dotenv/config";
 
 const client = new pg.Client(process.env.DB_CONNECT);
-
+console.log("Tentative de connexion avec :", process.env.DB_CONNECT);
 async function createTables() {
   try {
     await client.connect();
