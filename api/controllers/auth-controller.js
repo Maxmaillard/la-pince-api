@@ -89,7 +89,12 @@ class AuthController extends BaseController {
 
             return res.status(StatusCodes.OK).json({
                 message: "Connexion réussie",
-                token
+                token,
+                user: { id_user: user.id_user,
+                     first_name: user.first_name, 
+                     last_name: user.last_name,
+                      email: user.email }
+
             });
 
         } catch (error) {

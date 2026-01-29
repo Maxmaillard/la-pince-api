@@ -40,6 +40,31 @@ getDashboard = async (req, res) => {
         });
     }
 }
+// Récupérer toutes les transactions de l'utilisateur connecté
+getAllTransactions = async (req, res) => {
+    try {
+        const { user_id } = req.user;
+
+        const transactions = await Expense.findAll({
+            where: { id_user: user_id },
+            include: {
+                model: Category,
+                as: "category",
+                attributes: ["name", "color"]
+            },
+            order: [["date", "DESC"]]
+        });
+
+        return res.status(StatusCodes.OK).json(transactions);
+
+    } catch (error) {
+        console.error(error);
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+            error: "Erreur lors de la récupération des transactions"
+        });
+    }
+};
+
 // CREATE NEW TRANSACTION
  createTransaction = async (req, res) => {
     try {
