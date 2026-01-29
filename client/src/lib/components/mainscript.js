@@ -310,6 +310,8 @@ transactionForm.reset();
             // Animation de sortie avant suppression réelle du DOM
             row.classList.add('removing');
             setTimeout( async () => {
+
+                await transactionService.delete(row.dataset.id);
                 row.remove();
          //  Mettre à jour le total après suppression 
                 updateTotalExpenses(await transactionService.getAll());

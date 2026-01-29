@@ -57,6 +57,8 @@ export const transactionService = {
             }
         });
 
+        if (res.status === 204) { return { success: true }; }
+
         return res.json();
     }
 };

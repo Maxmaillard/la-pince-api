@@ -21,13 +21,12 @@ const user2 = await User.create({
   last_name: "khali"
 });
 
-console.log("🚧 Ajout des catégories...");
-const catFood = await Category.create({ name: "Nourriture", color: "#FF5733" });
-const catTransport = await Category.create({ name: "Transport", color: "#33C1FF" });
-const catLoisir = await Category.create({ name: "Loisirs", color: "#9D33FF" });
-const catSante = await Category.create({ name: "Santé", color: "#33FF57" });
-const catEpargne = await Category.create({ name: "Epargne", color: "#FFD700" });
-
+console.log("🚧 Ajout des catégories (Synchronisées avec le graphique)...");
+const catDivers = await Category.create({ name: "DIVERS", color: "#FF6384" });
+const catTransport = await Category.create({ name: "LOYER", color: "#36A2EB" });
+const catFood = await Category.create({ name: "ALIMENTATION", color: "#FFCE56" });
+const catLoisir = await Category.create({ name: "LOISIRS", color: "#4BC0C0" });
+const catEpargne = await Category.create({ name: "EPARGNE", color: "#9966FF" });
 
 console.log("🚧 Ajout des dépenses...");
 const expense1 = await Expense.create({
