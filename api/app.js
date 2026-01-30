@@ -6,11 +6,7 @@ const app = express();
 
 // Middlewares
 app.use(express.json());
-app.use(cors({
-    origin: 'http://127.0.0.1:5500', 
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization']
-}));
+app.use(cors()); // Autorise toutes les origines
 
 // Routes
 app.use("/api", router);

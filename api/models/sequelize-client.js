@@ -1,26 +1,20 @@
 import { Sequelize } from "sequelize";
+import "dotenv/config";
 
 export const sequelize = new Sequelize(process.env.DB_CONNECT, {
   dialect: "postgres",
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false
-    },
-    // CRITIQUE : Désactive le cache de requêtes pour le pooler
-    prepare: false 
-  },
-  logging: false
+  logging: console.log
 });
 
-// Test rapide
-(async () => {
+async function connectDB() {
   try {
     await sequelize.authenticate();
-    console.log('✅ VICTOIRE : Connexion établie via le Pooler IPv4');
-  } catch (e) {
-    console.error('❌ ECHEC :', e.message);
+    console.log('Connection has been established successfully.');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
   }
-})();
+}
+
+connectDB();
 
 export default sequelize;
